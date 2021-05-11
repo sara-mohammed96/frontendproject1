@@ -6,6 +6,7 @@ import rtl from 'jss-rtl';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import theme from './CreateTheme'
+import LoginPage from './pages/LoginPage'
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 function App() {
@@ -13,7 +14,7 @@ function App() {
     <ThemeProvider theme={theme}>
     <StylesProvider jss={jss}>
     <div>
-      <UserPage />
+      <LoginPage />
     </div>
     </StylesProvider>
     </ThemeProvider>
