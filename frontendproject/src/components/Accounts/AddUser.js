@@ -4,11 +4,12 @@ import { Container, Box, Grid , Modal , Hidden ,Typography} from '@material-ui/c
 import useStyles from '../Style';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import TextField from '@material-ui/core/TextField';
- function AddUserInfo(credentials) {
-  return fetch('http://localhost:3000/users')
-  .then((response) => response.json())
-  .then((responseJSON) => {return responseJSON})
-  .then((data)=> console.log(data.result.list))
+import request from '../../common/apiServer';
+
+
+ async function AddUserInfo(credentials) {
+   const users = await request('users')
+   return users
  }
 
 function AddUser() {
@@ -86,7 +87,7 @@ function AddUser() {
 
 </Box>
 <Box style={{marginTop:'-60px'}}>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#7661A4" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,229.3C480,213,600,139,720,144C840,149,960,235,1080,272C1200,309,1320,299,1380,293.3L1440,288L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#7661A4" fillOpacity="1" d="M0,160L60,181.3C120,203,240,245,360,229.3C480,213,600,139,720,144C840,149,960,235,1080,272C1200,309,1320,299,1380,293.3L1440,288L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
 </Box>
 
 

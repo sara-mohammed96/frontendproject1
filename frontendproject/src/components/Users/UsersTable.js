@@ -1,5 +1,3 @@
-
-
 import { React, useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -20,181 +18,173 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 import EditIcon from '@material-ui/icons/Edit';
 const useStyles1 = makeStyles((theme) => ({
-    root: {
-        flexShrink: 0,
-        marginLeft: theme.spacing(2.5),
-    },
+ root: {
+  flexShrink: 0,
+  marginLeft: theme.spacing(2.5),
+ },
 }));
 
 function TablePaginationActions(props) {
-    const classes = useStyles1();
-    const theme = useTheme();
-    const { count, page, rowsPerPage, onChangePage } = props;
+ const classes = useStyles1();
+ const theme = useTheme();
+ const { count, page, rowsPerPage, onChangePage } = props;
 
-    const handleFirstPageButtonClick = (event) => {
-        onChangePage(event, 0);
-    };
+ const handleFirstPageButtonClick = (event) => {
+  onChangePage(event, 0);
+ };
 
-    const handleBackButtonClick = (event) => {
-        onChangePage(event, page - 1);
-    };
+ const handleBackButtonClick = (event) => {
+  onChangePage(event, page - 1);
+ };
 
-    const handleNextButtonClick = (event) => {
-        onChangePage(event, page + 1);
-    };
+ const handleNextButtonClick = (event) => {
+  onChangePage(event, page + 1);
+ };
 
-    const handleLastPageButtonClick = (event) => {
-        onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-    };
+ const handleLastPageButtonClick = (event) => {
+  onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+ };
 
-    return (
-        <div className={classes.root}>
-            <IconButton
-                onClick={handleFirstPageButtonClick}
-                disabled={page === 0}
-                aria-label="first page"
-            >
-                {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
-            </IconButton>
-            <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
-                {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-            </IconButton>
-            <IconButton
-                onClick={handleNextButtonClick}
-                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                aria-label="next page"
-            >
-                {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-            </IconButton>
-            <IconButton
-                onClick={handleLastPageButtonClick}
-                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                aria-label="last page"
-            >
-                {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
-            </IconButton>
-        </div>
-    );
+ return (
+  <div className={classes.root}>
+   <IconButton
+    onClick={handleFirstPageButtonClick}
+    disabled={page === 0}
+    aria-label='first page'
+   >
+    {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+   </IconButton>
+   <IconButton
+    onClick={handleBackButtonClick}
+    disabled={page === 0}
+    aria-label='previous page'
+   >
+    {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+   </IconButton>
+   <IconButton
+    onClick={handleNextButtonClick}
+    disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+    aria-label='next page'
+   >
+    {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+   </IconButton>
+   <IconButton
+    onClick={handleLastPageButtonClick}
+    disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+    aria-label='last page'
+   >
+    {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+   </IconButton>
+  </div>
+ );
 }
 
 TablePaginationActions.propTypes = {
-    count: PropTypes.number.isRequired,
-    onChangePage: PropTypes.func.isRequired,
-    page: PropTypes.number.isRequired,
-    rowsPerPage: PropTypes.number.isRequired,
+ count: PropTypes.number.isRequired,
+ onChangePage: PropTypes.func.isRequired,
+ page: PropTypes.number.isRequired,
+ rowsPerPage: PropTypes.number.isRequired,
 };
 
-
-
 const useStyles2 = makeStyles({
-    table: {
-        minWidth: 500,
-
-    },
+ table: {
+  minWidth: 500,
+ },
 });
 
-export default function PositionTable() {
-    const classes = useStyles2();
-    const [page, setPage] = useState(0);
-    const [users, setUsers] = useState([]);
+export default function PositionTable({ users }) {
+ const classes = useStyles2();
+ const [page, setPage] = useState(0);
+ const [rowsPerPage, setRowsPerPage] = useState(5);
 
-    fetch('http://localhost:3000/users')
-        .then((response) => response.json())
-        .then((responseJSON) => { return responseJSON })
-        .then((data) => (data.result))
-        .then((data) => {
-            setUsers(data.list)
-            console.log(setUsers)
-        })
-    const [rowsPerPage, setRowsPerPage] = useState(5);
+ const emptyRows =
+  rowsPerPage - Math.min(rowsPerPage, users.length - page * rowsPerPage);
 
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, users.length - page * rowsPerPage);
+ const handleChangePage = (event, newPage) => {
+  setPage(newPage);
+ };
 
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
+ const handleChangeRowsPerPage = (event) => {
+  setRowsPerPage(parseInt(event.target.value, 10));
+  setPage(0);
+ };
 
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
-    };
+ return (
+  <TableContainer component={Paper}>
+   <Table className={classes.table} aria-label='custom pagination table'>
+    <TableBody>
+     <TableRow>
+      <TableCell style={{ width: 160 }} align='Left'>
+       id
+      </TableCell>
+      <TableCell style={{ width: 160 }} align='Left'>
+       role
+      </TableCell>
+      <TableCell style={{ width: 160 }} align='Left'>
+       name
+      </TableCell>
+      <TableCell style={{ width: 160 }} align='Left'>
+       username
+      </TableCell>
+      <TableCell style={{ width: 160 }} align='Left'>
+       is Active
+      </TableCell>
+      <TableCell style={{ width: 160 }} align='Left'>
+       changes
+      </TableCell>
+     </TableRow>
+     {(rowsPerPage > 0
+      ? users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+      : users
+     ).map((row) => (
+      <TableRow key={row.name}>
+       <TableCell>{row.id}</TableCell>
+       <TableCell style={{ width: 160 }} align='Left'>
+        {row.role}
+       </TableCell>
+       <TableCell style={{ width: 160 }} align='Left'>
+        {row.name}
+       </TableCell>
+       <TableCell style={{ width: 160 }} align='Left'>
+        {row.username}
+       </TableCell>
+       <TableCell style={{ width: 160 }} align='Left'>
+        {row.isActive}
+       </TableCell>
+       <TableCell style={{ width: 160 }} align='Left'>
+        <IconButton>
+         {' '}
+         <EditIcon />
+        </IconButton>
+       </TableCell>
+      </TableRow>
+     ))}
 
-    return (
-        <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="custom pagination table">
-                <TableBody>
-                    <TableRow >
-                        <TableCell style={{ width: 160 }} align="Left">
-                            id
-                            </TableCell>
-                        <TableCell style={{ width: 160 }} align="Left">
-                            role
-                            </TableCell>
-                        <TableCell style={{ width: 160 }} align="Left">
-                            name
-                            </TableCell>
-                        <TableCell style={{ width: 160 }} align="Left">
-                            username
-                            </TableCell>
-                        <TableCell style={{ width: 160 }} align="Left">
-                            is Active
-                            </TableCell>
-                        <TableCell style={{ width: 160 }} align="Left">
-                            changes
-                            </TableCell>
-                    </TableRow>
-                    {(rowsPerPage > 0
-                        ? users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        : users
-                    ).map((row) => (
-                        <TableRow key={row.name}>
-                            <TableCell >
-                                {row.id}
-                            </TableCell>
-                            <TableCell style={{ width: 160 }} align="Left">
-                                {row.role}
-                            </TableCell>
-                            <TableCell style={{ width: 160 }} align="Left">
-                                {row.name}
-                            </TableCell>
-                            <TableCell style={{ width: 160 }} align="Left">
-                                {row.username}
-                            </TableCell>
-                            <TableCell style={{ width: 160 }} align="Left">
-                                {row.isActive}
-                            </TableCell>
-                            <TableCell style={{ width: 160 }} align="Left">
-
-                                <IconButton> <EditIcon /></IconButton>
-                            </TableCell>
-                        </TableRow>
-                    ))}
-
-                    {emptyRows > 0 && (
-                        <TableRow style={{ height: 53 * emptyRows }}>
-                            <TableCell colSpan={6} />
-                        </TableRow>
-                    )}
-                </TableBody>
-                <TableFooter>
-                    <TableRow>
-                        <TablePagination
-                            rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                            colSpan={3}
-                            count={users.length}
-                            rowsPerPage={rowsPerPage}
-                            page={page}
-                            SelectProps={{
-                                inputProps: { 'aria-label': 'rows per page' },
-                                native: true,
-                            }}
-                            onChangePage={handleChangePage}
-                            onChangeRowsPerPage={handleChangeRowsPerPage}
-                            ActionsComponent={TablePaginationActions}
-                        />
-                    </TableRow>
-                </TableFooter>
-            </Table>
-        </TableContainer>
-    );
+     {emptyRows > 0 && (
+      <TableRow style={{ height: 53 * emptyRows }}>
+       <TableCell colSpan={6} />
+      </TableRow>
+     )}
+    </TableBody>
+    <TableFooter>
+     <TableRow>
+      <TablePagination
+       rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+       colSpan={3}
+       count={users.length}
+       rowsPerPage={rowsPerPage}
+       page={page}
+       SelectProps={{
+        inputProps: { 'aria-label': 'rows per page' },
+        native: true,
+       }}
+       onChangePage={handleChangePage}
+       onChangeRowsPerPage={handleChangeRowsPerPage}
+       ActionsComponent={TablePaginationActions}
+      />
+     </TableRow>
+    </TableFooter>
+   </Table>
+  </TableContainer>
+ );
 }
