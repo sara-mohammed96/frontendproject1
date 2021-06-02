@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react'
 import Grid from '@material-ui/core/Grid';
-import { DropzoneArea } from 'material-ui-dropzone';
 import Button from '@material-ui/core/Button';
 import { Typography,Box, Container } from '@material-ui/core';
 import GetAppIcon from '@material-ui/icons/GetApp';
