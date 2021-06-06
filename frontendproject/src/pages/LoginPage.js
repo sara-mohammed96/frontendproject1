@@ -12,17 +12,7 @@ import {
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import useStyles from '../components/Style';
 import { Formik } from 'formik';
-
-async function loginUser(credentials) {
- const res = await fetch('http://localhost:3000/auth/signin', {
-  method: 'POST',
-  headers: {
-   'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(credentials),
- });
- return res.json();
-}
+import { signin } from '../common/authService';
 
 export default function LoginPage() {
  const classes = useStyles();
@@ -50,12 +40,14 @@ export default function LoginPage() {
      }}
      onSubmit={async (values, { setSubmitting }) => {
       const { username, password } = values;
-      const token = await loginUser({
-       username,
-       password,
-      });
-      console.log(token);
-      setSubmitting(false);
+      try {
+       const user = await signin(username, password);
+       setSubmitting(false);
+       console.log(user);
+      } catch (error) {
+       console.error(error);
+       setSubmitting(false);
+      }
      }}
     >
      {({
