@@ -44,7 +44,7 @@ function ComplaintsSideBar(props) {
     const { classes, children } = props;
 
     return (
-        <Box className={classes.rootSidebar} >
+        <Box className={classes.rootSidebar}  >
             <Drawer
                 className={classes.drawer}
                 variant="permanent"
@@ -56,8 +56,7 @@ function ComplaintsSideBar(props) {
                 <div className={classes.toolbar} />
                 <Divider />
                 <List>
-                    <ComplaintsHeader />
-                    <Box style={{ backgroundColor: '#F5F4FA' }}>
+                    <Box >
                         <Box pl={2} pt={2}>
                             <Box style={{ display: 'flex' }}>
                                 <Typography variant="h6" color="primary" className={classes.fullNameStyle}>الاسم الكامل</Typography>

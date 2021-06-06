@@ -12,7 +12,9 @@ import ProfileDetails from './pages/ProfileDetails'
 import Positions from './pages/Positions'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import useToken from './components/UseToken';
-import Users from './pages/Users'
+import Users from './pages/Users';
+import Comments from './pages/Comments'
+import ComplainSeeMore from './components/ComplaintsDisplay/ComplainSeeMore'
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 function App() {
@@ -41,6 +43,12 @@ function App() {
               </Route>
               <Route path="/users">
                 <Users />
+              </Route>
+              <Route path="/comments">
+                <Comments />
+              </Route>
+              <Route path="/details">
+                <ComplainSeeMore />
               </Route>
             </Switch>
 

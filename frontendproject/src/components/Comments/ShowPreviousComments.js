@@ -14,8 +14,7 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
-import PositionTableRow from './PositionTableRow';
-
+import CommentsTableRow from './CommentsTableRow'
 const useStyles1 = makeStyles((theme) => ({
     root: {
         flexShrink: 0,
@@ -91,13 +90,13 @@ const useStyles2 = makeStyles({
     },
 });
 
-export default function PositionTable({ positions, users }) {
+export default function ShowPreviousComments({ PreviousComments, applications }) {
     const classes = useStyles2();
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
 
     const emptyRows =
-        rowsPerPage - Math.min(rowsPerPage, positions.length - page * rowsPerPage);
+        rowsPerPage - Math.min(rowsPerPage, PreviousComments.length - page * rowsPerPage);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -115,30 +114,32 @@ export default function PositionTable({ positions, users }) {
                     <TableRow>
                         <TableCell style={{ width: 160 }} align='Left'>
                             id
-      </TableCell>
+                         </TableCell>
                         <TableCell style={{ width: 160 }} align='Left'>
-                            الاسم الوظيفي
-      </TableCell>
+                            رمز الشكوى
+                        </TableCell>
                         <TableCell style={{ width: 160 }} align='Left'>
-                            صاحب الوظيفة
-      </TableCell>
+                            عنوان الشكوى
+                         </TableCell>
                         <TableCell style={{ width: 160 }} align='Left'>
-                            هل يستطيع رؤية الشكوى
-      </TableCell>
+                            نص التهميش
+                        </TableCell>
                         <TableCell style={{ width: 160 }} align='Left'>
-                            تعديلات
-      </TableCell>
+                            اسم صاحب التهميش
+                        </TableCell>
+                        <TableCell style={{ width: 160 }} align='Left'>
+                            المرفقات
+                         </TableCell>
                     </TableRow>
                     {(rowsPerPage > 0
-                        ? positions.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        : positions
+                        ? PreviousComments.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                        : PreviousComments
                     ).map((row) => (
-                        <PositionTableRow
+                        <CommentsTableRow
                             key={row.id}
-                            name={row.name}
+                            body={row.body}
                             id={row.id}
-                            canReceiveApplication={row.canReceiveApplication}
-                            users={users}
+
                         />
                     ))}
 
@@ -153,7 +154,7 @@ export default function PositionTable({ positions, users }) {
                         <TablePagination
                             rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
                             colSpan={3}
-                            count={positions.length}
+                            count={PreviousComments.length}
                             rowsPerPage={rowsPerPage}
                             page={page}
                             SelectProps={{

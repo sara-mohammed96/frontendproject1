@@ -31,17 +31,14 @@ export default function ComplaintsDetails() {
                 <Typography gutterBottom variant="h5" component="h2" style={{ marginRight: '2rem' }}>
                     عنوان الشكوى
           </Typography>
-                <Box style={{ border: "1px solid black", width: "7%", marginRight: '3rem', backgroundColor: 'grey' }}>
+                <Box style={{ border: "1px solid black", width: "5%", marginRight: '3rem', backgroundColor: '#F5F4FA', borderRadius: '40%', height: '4%' }}>
                     <Typography>1234</Typography>
                 </Box>
             </Box>
-            <TextareaAutosize rowsMin={10}
-                aria-label="maximum height"
-                placeholder="Maximum 4 rows"
-                defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua."  style={{ width: '45rem', marginRight: '2rem' }} />
 
-
+            <Box style={{ border: "1px solid black", width: "80%", marginRight: '3rem', backgroundColor: '#fff', borderRadius: '10%', height: '60%' }}>
+                <Typography style={{ paddingRight: '6%', paddingTop: '2%' }}>تقديم شكوى ياعهصضشياهعسشاعياشيعخشسايعخا</Typography>
+            </Box>
 
             <Typography gutterBottom variant="h5" component="h2" style={{ marginRight: '2rem' }}>
                 المرفقات
@@ -129,6 +126,6 @@ export default function ComplaintsDetails() {
                     </CardActions>
                 </Card>
             </Box>
-        </Box>
+        </Box >
     );
 }

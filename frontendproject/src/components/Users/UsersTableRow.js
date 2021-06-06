@@ -1,13 +1,16 @@
 import { IconButton, TableCell, TableRow } from '@material-ui/core';
 import React, { useState } from 'react';
 import EditIcon from '@material-ui/icons/Edit';
-import AddEditPosition from './AddEditPosition';
+import AddEditUser from './AddEditUser';
 
-export default function PositionTableRow({
+export default function UsersTableRow({
+    key,
     name,
+    username,
     id,
-    canReceiveApplication,
-    users,
+    role,
+    isActive,
+    password
 }) {
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
@@ -21,31 +24,38 @@ export default function PositionTableRow({
     return (
         <>
             <TableRow>
-                <TableCell>{id}</TableCell>
+
                 <TableCell style={{ width: 160 }} align='Left'>
-                    {name}
+                    {id}
+                </TableCell>
+                <TableCell style={{ width: 160 }} align='Left'>
+                    {role}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align='Left'>
                     {name}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align='Left'>
-                    {canReceiveApplication ? 'yes' : 'no'}
+                    {username}
                 </TableCell>
+                <TableCell style={{ width: 160 }} align='Left'>
+                    {isActive ? 'yes' : 'no'}
+                </TableCell>
+
                 <TableCell style={{ width: 160 }} align='Left'>
                     <IconButton onClick={handleOpen}>
                         <EditIcon />
                     </IconButton>
                 </TableCell>
             </TableRow>
-            <AddEditPosition
+            <AddEditUser
                 open={open}
                 handleClose={handleClose}
                 action={'edit'}
-                users={users}
-                positionId={id}
-                positionName={name}
-                canReceiveApplication={canReceiveApplication}
-            // you should pass the user and the manager
+                name={name}
+                isActive={isActive}
+                password={password}
+                username={username}
+
             />
         </>
     );

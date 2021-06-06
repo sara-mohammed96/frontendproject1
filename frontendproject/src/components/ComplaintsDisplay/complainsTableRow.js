@@ -1,13 +1,14 @@
 import { IconButton, TableCell, TableRow } from '@material-ui/core';
 import React, { useState } from 'react';
 import EditIcon from '@material-ui/icons/Edit';
-import AddEditPosition from './AddEditPosition';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
-export default function PositionTableRow({
-    name,
+export default function ComplainsTableRow({
     id,
-    canReceiveApplication,
-    users,
+    name,
+    description,
+    subject,
+
 }) {
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
@@ -21,32 +22,32 @@ export default function PositionTableRow({
     return (
         <>
             <TableRow>
-                <TableCell>{id}</TableCell>
+
                 <TableCell style={{ width: 160 }} align='Left'>
-                    {name}
+                    {id}
+                </TableCell>
+                <TableCell style={{ width: 160 }} align='Left'>
+                    {subject}
+                </TableCell>
+                <TableCell style={{ width: 160 }} align='Left'>
+                    {description}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align='Left'>
                     {name}
                 </TableCell>
+
                 <TableCell style={{ width: 160 }} align='Left'>
-                    {canReceiveApplication ? 'yes' : 'no'}
+                    <IconButton onClick={handleOpen}>
+                        <EditIcon fontSize="small" color="primary" />
+                    </IconButton>
                 </TableCell>
                 <TableCell style={{ width: 160 }} align='Left'>
                     <IconButton onClick={handleOpen}>
-                        <EditIcon />
+                        <AccountCircleIcon fontSize="small" color="primary" />
                     </IconButton>
                 </TableCell>
             </TableRow>
-            <AddEditPosition
-                open={open}
-                handleClose={handleClose}
-                action={'edit'}
-                users={users}
-                positionId={id}
-                positionName={name}
-                canReceiveApplication={canReceiveApplication}
-            // you should pass the user and the manager
-            />
+
         </>
     );
 }

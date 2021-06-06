@@ -5,46 +5,47 @@ import useStyles from '../Style';
 import AddEditPosition from './AddEditPosition';
 
 function AddPosition({ users }) {
- const classes = useStyles();
- const [open, setOpen] = useState(false);
- const handleOpen = () => {
-  setOpen(true);
- };
+    const classes = useStyles();
+    const [open, setOpen] = useState(false);
 
- const handleClose = () => {
-  setOpen(false);
- };
+    const handleOpen = () => {
+        setOpen(true);
+    };
 
- return (
-  <Container>
-   <Grid item>
-    <Box className={classes.buttonContainer}>
-     <Button
-      onClick={handleOpen}
-      variant='contained'
-      component='span'
-      style={{
-       borderRadius: 50,
-       border: 0,
-       background: 'linear-gradient(to right bottom, #4455A7, #6C54A2)',
-       color: 'white',
+    const handleClose = () => {
+        setOpen(false);
+    };
 
-       marginTop: '3rem',
-       width: '15%',
-       marginRight: '38%',
-      }}
-     >
-      <Typography>اضافة موقع وظيفي</Typography>
-     </Button>
-    </Box>
-    <AddEditPosition
-     open={open}
-     handleClose={handleClose}
-     action={'add'}
-     users={users}
-    />
-   </Grid>
-  </Container>
- );
+    return (
+        <Container>
+            <Grid item>
+                <Box className={classes.buttonContainer}>
+                    <Button
+                        onClick={handleOpen}
+                        variant='contained'
+                        component='span'
+                        style={{
+                            borderRadius: 50,
+                            border: 0,
+                            background: 'linear-gradient(to right bottom, #4455A7, #6C54A2)',
+                            color: 'white',
+
+                            marginTop: '3rem',
+                            width: '15%',
+                            marginRight: '38%',
+                        }}
+                    >
+                        <Typography>اضافة موقع وظيفي</Typography>
+                    </Button>
+                </Box>
+                <AddEditPosition
+                    open={open}
+                    handleClose={handleClose}
+                    action={'add'}
+                    users={users}
+                />
+            </Grid>
+        </Container>
+    );
 }
 export default AddPosition;

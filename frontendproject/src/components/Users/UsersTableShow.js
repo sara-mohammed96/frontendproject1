@@ -14,7 +14,7 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
-import PositionTableRow from './PositionTableRow';
+import UsersTableRow from './UsersTableRow';
 
 const useStyles1 = makeStyles((theme) => ({
     root: {
@@ -91,13 +91,13 @@ const useStyles2 = makeStyles({
     },
 });
 
-export default function PositionTable({ positions, users }) {
+export default function UsersTableShow({ users }) {
     const classes = useStyles2();
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
 
     const emptyRows =
-        rowsPerPage - Math.min(rowsPerPage, positions.length - page * rowsPerPage);
+        rowsPerPage - Math.min(rowsPerPage, users.length - page * rowsPerPage);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -112,33 +112,40 @@ export default function PositionTable({ positions, users }) {
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label='custom pagination table'>
                 <TableBody>
+
                     <TableRow>
                         <TableCell style={{ width: 160 }} align='Left'>
                             id
       </TableCell>
                         <TableCell style={{ width: 160 }} align='Left'>
-                            الاسم الوظيفي
+                            role
       </TableCell>
                         <TableCell style={{ width: 160 }} align='Left'>
-                            صاحب الوظيفة
+                            name
       </TableCell>
                         <TableCell style={{ width: 160 }} align='Left'>
-                            هل يستطيع رؤية الشكوى
+                            username
       </TableCell>
                         <TableCell style={{ width: 160 }} align='Left'>
-                            تعديلات
+                            is Active
+      </TableCell>
+                        <TableCell style={{ width: 160 }} align='Left'>
+                            changes
       </TableCell>
                     </TableRow>
                     {(rowsPerPage > 0
-                        ? positions.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        : positions
+                        ? users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                        : users
                     ).map((row) => (
-                        <PositionTableRow
+                        <UsersTableRow
                             key={row.id}
                             name={row.name}
+                            username={row.username}
                             id={row.id}
-                            canReceiveApplication={row.canReceiveApplication}
-                            users={users}
+                            role={row.role}
+                            isActive={row.isActive}
+                            password={row.password}
+
                         />
                     ))}
 
@@ -153,7 +160,7 @@ export default function PositionTable({ positions, users }) {
                         <TablePagination
                             rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
                             colSpan={3}
-                            count={positions.length}
+                            count={users.length}
                             rowsPerPage={rowsPerPage}
                             page={page}
                             SelectProps={{

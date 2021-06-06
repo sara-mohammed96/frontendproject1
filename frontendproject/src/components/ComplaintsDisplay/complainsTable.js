@@ -14,8 +14,7 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
-import PositionTableRow from './PositionTableRow';
-
+import ComplainsTableRow from './complainsTableRow'
 const useStyles1 = makeStyles((theme) => ({
     root: {
         flexShrink: 0,
@@ -91,13 +90,13 @@ const useStyles2 = makeStyles({
     },
 });
 
-export default function PositionTable({ positions, users }) {
+export default function ComplainsTable({ applications }) {
     const classes = useStyles2();
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
 
     const emptyRows =
-        rowsPerPage - Math.min(rowsPerPage, positions.length - page * rowsPerPage);
+        rowsPerPage - Math.min(rowsPerPage, applications.length - page * rowsPerPage);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -117,28 +116,31 @@ export default function PositionTable({ positions, users }) {
                             id
       </TableCell>
                         <TableCell style={{ width: 160 }} align='Left'>
-                            الاسم الوظيفي
+                            عنوان الشكوى
       </TableCell>
                         <TableCell style={{ width: 160 }} align='Left'>
-                            صاحب الوظيفة
+                            تفاصيل الشكوى
       </TableCell>
                         <TableCell style={{ width: 160 }} align='Left'>
-                            هل يستطيع رؤية الشكوى
+                            اسم صاحب الشكوى
       </TableCell>
                         <TableCell style={{ width: 160 }} align='Left'>
-                            تعديلات
+                            تدقيق
+      </TableCell>
+                        <TableCell style={{ width: 160 }} align='Left'>
+                            معلومات صاحب الشكوى
       </TableCell>
                     </TableRow>
                     {(rowsPerPage > 0
-                        ? positions.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        : positions
+                        ? applications.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                        : applications
                     ).map((row) => (
-                        <PositionTableRow
+                        <ComplainsTableRow
                             key={row.id}
                             name={row.name}
                             id={row.id}
-                            canReceiveApplication={row.canReceiveApplication}
-                            users={users}
+                            description={row.description}
+                            subject={row.subject}
                         />
                     ))}
 
@@ -153,7 +155,7 @@ export default function PositionTable({ positions, users }) {
                         <TablePagination
                             rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
                             colSpan={3}
-                            count={positions.length}
+                            count={applications.length}
                             rowsPerPage={rowsPerPage}
                             page={page}
                             SelectProps={{

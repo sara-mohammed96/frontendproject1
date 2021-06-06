@@ -1,31 +1,28 @@
-import { React, useState } from 'react';
-import ComplaintsHeader from '../components/ComplaintsDisplay/ComplaintsHeader';
+import { Typography, Box } from '@material-ui/core';
+import { React, useState, useEffect } from 'react';
+import { getApplications } from '../components/ComplaintsDisplay/complains.service';
+import ComplainsTable from '../components/ComplaintsDisplay/complainsTable';
 import ComplaintsSideBar from '../components/ComplaintsDisplay/ComplaintsSideBar';
-import {
- Container,
- Box,
- Grid,
- Modal,
- Hidden,
- Typography,
-} from '@material-ui/core';
-import ComplaintsMessage from '../components/ComplaintsDisplay/ComplaintsMessage';
-import Complains from '../components/ComplaintsDisplay/Complains';
 import ComplaintsDetails from '../components/ComplaintsDisplay/ComplaintsDetails';
-
+import ComplainSeeMore from '../components/ComplaintsDisplay/ComplainSeeMore'
 function ComplaintsDisplay() {
- const [list, setList] = useState([]);
- fetch('http://localhost:3000/applications')
-  .then((res) => res.json())
-  .then((res) => res.result)
-  .then((res) => res.list)
-  .then((res) => setList(res));
+    const [list, setList] = useState([]);
+    const [applications, setApplications] = useState([])
+    const [users, setUsers] = useState([]);
+    useEffect(() => {
+        getApplications().then((application) => setApplications(application));
+    }, []);
+    //<ComplainsTable applications={applications} />
+    return (
+        <div>
+            <Box p={3}>
+                <Typography variant="h4" align="center" color="primary"> الشكاوي </Typography>
+            </Box>
 
- return (
-  <div>
-   <Complains />
-  </div>
- );
+            <ComplainsTable applications={applications} />
+
+        </div>
+    );
 }
 
 export default ComplaintsDisplay;

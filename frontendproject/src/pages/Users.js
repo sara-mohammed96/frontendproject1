@@ -9,18 +9,20 @@ import NavbarHeader from '../components/Navbar/Navbar';
 import UsersTable from '../components/Users/UsersTable';
 import AddUser from '../components/Users/AddUser';
 import { getAllUsers } from '../components/Users/users.service';
-export default function Users() {
- const classes = useStyles();
- const [users, setUsers] = useState([]);
+import UsersTableShow from '../components/Users/UsersTableShow';
 
- useEffect(() => {
-  getAllUsers().then((usersList) => setUsers(usersList));
- }, []);
- return (
-  <div>
-   <NavbarHeader />
-   <UsersTable users={users} />
-   <AddUser />
-  </div>
- );
+export default function Users() {
+    const classes = useStyles();
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        getAllUsers().then((usersList) => setUsers(usersList));
+    }, []);
+    return (
+        <div>
+            <NavbarHeader />
+            <UsersTableShow users={users} />
+            <AddUser />
+        </div>
+    );
 }
