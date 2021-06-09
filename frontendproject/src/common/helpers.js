@@ -18,8 +18,12 @@ export const getToken = async () => {
    return newTokens.accessToken.token;
   } catch (error) {
    console.log(error);
+   window.localStorage.removeItem('token');
+   window.localStorage.removeItem('refresh_token');
    throw new Error(messages.CANT_GET_ACCESS_TOKEN);
   }
  }
+ window.localStorage.removeItem('token');
+ window.localStorage.removeItem('refresh_token');
  throw new Error(messages.NO_REFRESH_TOKEN);
 };

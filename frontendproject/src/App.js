@@ -1,67 +1,43 @@
+import React, { useContext, useEffect } from 'react';
 import './App.css';
-import UserPage from './pages/UserPage';
-import ComplaintsDisplay from './pages/ComplaintsDisplay';
 import { create } from 'jss';
 import rtl from 'jss-rtl';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import theme from './CreateTheme'
-import LoginPage from './pages/LoginPage'
-import Profiles from './pages/Profiles'
-import ProfileDetails from './pages/ProfileDetails'
-import Positions from './pages/Positions'
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import useToken from './components/UseToken';
-import Users from './pages/Users';
-import Comments from './pages/Comments'
-import ComplainSeeMore from './components/ComplaintsDisplay/ComplainSeeMore'
-import LandingPage from './pages/LandingPage'
+import { ThemeProvider } from '@material-ui/core/styles';
+import theme from './CreateTheme';
+import { UsersContext } from './state/userState/UserContext';
+import { getToken } from './common/helpers';
+import Router from './pages/Router';
+
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 function App() {
+ const { isAuthenticated, setIsAuthenticated, setIsLoading } =
+  useContext(UsersContext);
+ console.log(isAuthenticated);
 
-  return (
-    <ThemeProvider theme={theme}>
-      <StylesProvider jss={jss}>
-        <div>
-          <BrowserRouter>
-            <Switch>
+ useEffect(() => {
+  getToken()
+   .then((res) => {
+    setIsAuthenticated(true);
+    setIsLoading(false);
+   })
+   .catch((error) => {
+    console.error(error);
+    setIsAuthenticated(false);
+    setIsLoading(false);
+   });
+ }, []);
 
-              <Route path="/login">
-                <LoginPage />
-              </Route>
-              <Route path="/Profiles">
-                <Profiles />
-              </Route>
-
-              <Route path="/userpage">
-                <UserPage />
-              </Route>
-              <Route path="/Complaints">
-                <ComplaintsDisplay />
-              </Route>
-              <Route path="/positions">
-                <Positions />
-              </Route>
-              <Route path="/users">
-                <Users />
-              </Route>
-              <Route path="/comments">
-                <Comments />
-              </Route>
-              <Route path="/details">
-                <ComplainSeeMore />
-              </Route>
-              <Route path="/">
-                <LandingPage />
-              </Route>
-            </Switch>
-
-          </BrowserRouter>
-        </div>
-      </StylesProvider>
-    </ThemeProvider>
-  );
+ return (
+  <ThemeProvider theme={theme}>
+   <StylesProvider jss={jss}>
+    <div>
+     <Router />
+    </div>
+   </StylesProvider>
+  </ThemeProvider>
+ );
 }
 
 export default App;

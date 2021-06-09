@@ -18,19 +18,19 @@ export default function CommentsTableRow({
         <>
             <TableRow>
                 <TableCell>{id}</TableCell>
-                <TableCell style={{ width: 160 }} align='Left'>
+                <TableCell style={{ width: 160 }} align='left'>
 
                 </TableCell>
-                <TableCell style={{ width: 160 }} align='Left'>
+                <TableCell style={{ width: 160 }} align='left'>
                     {complains.title}
                 </TableCell>
-                <TableCell style={{ width: 160 }} align='Left'>
+                <TableCell style={{ width: 160 }} align='left'>
                     {body}
                 </TableCell>
-                <TableCell style={{ width: 160 }} align='Left'>
+                <TableCell style={{ width: 160 }} align='left'>
                     {complains.name}
                 </TableCell>
-                <TableCell style={{ width: 160 }} align='Left'>
+                <TableCell style={{ width: 160 }} align='left'>
 
                 </TableCell>
 

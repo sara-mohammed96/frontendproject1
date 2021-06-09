@@ -9,21 +9,22 @@ export const signin = async (username, password) => {
  const signinRoute = 'auth/signin';
  const requestType = 'POST';
  const isWithHeaders = false;
- try {
-  const userObj = await httpRequest(
-   signinRoute,
-   { username, password },
-   requestType,
-   isWithHeaders
-  );
-  saveTokensToLocalStorage(
-   userObj.result.accessToken,
-   userObj.result.refreshToken
-  );
-  return userObj;
- } catch (error) {
-  return error;
- }
+ const userObj = await httpRequest(
+  signinRoute,
+  { username, password },
+  requestType,
+  isWithHeaders
+ );
+ saveTokensToLocalStorage(
+  userObj.result.accessToken,
+  userObj.result.refreshToken
+ );
+ return {
+  id: userObj.result.id,
+  name: userObj.result.name,
+  username: userObj.result.username,
+  role: userObj.result.role,
+ };
 };
 
 export const refreshToken = async (refreshToken) => {

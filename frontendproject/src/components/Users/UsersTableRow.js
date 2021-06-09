@@ -25,23 +25,23 @@ export default function UsersTableRow({
         <>
             <TableRow>
 
-                <TableCell style={{ width: 160 }} align='Left'>
+                <TableCell style={{ width: 160 }} align='left'>
                     {id}
                 </TableCell>
-                <TableCell style={{ width: 160 }} align='Left'>
+                <TableCell style={{ width: 160 }} align='left'>
                     {role}
                 </TableCell>
-                <TableCell style={{ width: 160 }} align='Left'>
+                <TableCell style={{ width: 160 }} align='left'>
                     {name}
                 </TableCell>
-                <TableCell style={{ width: 160 }} align='Left'>
+                <TableCell style={{ width: 160 }} align='left'>
                     {username}
                 </TableCell>
-                <TableCell style={{ width: 160 }} align='Left'>
+                <TableCell style={{ width: 160 }} align='left'>
                     {isActive ? 'yes' : 'no'}
                 </TableCell>
 
-                <TableCell style={{ width: 160 }} align='Left'>
+                <TableCell style={{ width: 160 }} align='left'>
                     <IconButton onClick={handleOpen}>
                         <EditIcon />
                     </IconButton>

@@ -1,5 +1,4 @@
-import request from '../../common/apiServer';
-
+import { httpRequest } from '../../common/apiServer';
 
 /*const addComments = async (data) => {
     const res = await fetch('http://localhost:3000/positions', {
@@ -12,16 +11,15 @@ import request from '../../common/apiServer';
     return res.json();
 };*/
 export const getAllPreviousComments = async () => {
-    const res = await request('comments');
-    return res.result.list;
+ const res = await httpRequest('comments', {}, 'GET');
+ return res.result.list;
 };
 export const getAllUsers = async () => {
-    const res = await request('users')
-    return res.result.list
-}
+ const res = await httpRequest('users', {}, 'GET');
+ return res.result.list;
+};
 
 export const getApplications = async () => {
-    const res = await request('applications')
-    return res.result.list
-}
-
+ const res = await httpRequest('applications', {}, 'GET');
+ return res.result.list;
+};

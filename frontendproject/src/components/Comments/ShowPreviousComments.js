@@ -112,22 +112,22 @@ export default function ShowPreviousComments({ PreviousComments, applications })
             <Table className={classes.table} aria-label='custom pagination table'>
                 <TableBody>
                     <TableRow>
-                        <TableCell style={{ width: 160 }} align='Left'>
+                        <TableCell style={{ width: 160 }} align='left'>
                             id
                          </TableCell>
-                        <TableCell style={{ width: 160 }} align='Left'>
+                        <TableCell style={{ width: 160 }} align='left'>
                             رمز الشكوى
                         </TableCell>
-                        <TableCell style={{ width: 160 }} align='Left'>
+                        <TableCell style={{ width: 160 }} align='left'>
                             عنوان الشكوى
                          </TableCell>
-                        <TableCell style={{ width: 160 }} align='Left'>
+                        <TableCell style={{ width: 160 }} align='left'>
                             نص التهميش
                         </TableCell>
-                        <TableCell style={{ width: 160 }} align='Left'>
+                        <TableCell style={{ width: 160 }} align='left'>
                             اسم صاحب التهميش
                         </TableCell>
-                        <TableCell style={{ width: 160 }} align='Left'>
+                        <TableCell style={{ width: 160 }} align='left'>
                             المرفقات
                          </TableCell>
                     </TableRow>

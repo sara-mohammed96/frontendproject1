@@ -30,24 +30,24 @@ export default function ComplainsTableRow({
         <>
             <TableRow>
 
-                <TableCell style={{ width: 160 }} align='Left'>
+                <TableCell style={{ width: 160 }} align='left'>
                     {id}
                 </TableCell>
-                <TableCell style={{ width: 160 }} align='Left'>
+                <TableCell style={{ width: 160 }} align='left'>
                     {subject}
                 </TableCell>
-                <TableCell style={{ width: 160 }} align='Left'>
+                <TableCell style={{ width: 160 }} align='left'>
                     {description}
                 </TableCell>
-                <TableCell style={{ width: 160 }} align='Left'>
+                <TableCell style={{ width: 160 }} align='left'>
                     {name}
                 </TableCell>
-                <TableCell style={{ width: 160 }} align='Left'>
+                <TableCell style={{ width: 160 }} align='left'>
                     <IconButton onClick={redirectToCommentsPage}>
                         <EditIcon fontSize="small" color="primary" />
                     </IconButton>
                 </TableCell>
-                <TableCell style={{ width: 160 }} align='Left'>
+                <TableCell style={{ width: 160 }} align='left'>
                     <IconButton onClick={redirectToDetailsPage}>
                         <AccountCircleIcon fontSize="small" color="primary" />
                     </IconButton>

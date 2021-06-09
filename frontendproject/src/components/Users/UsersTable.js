@@ -114,22 +114,22 @@ export default function PositionTable({ users }) {
             <Table className={classes.table} aria-label='custom pagination table'>
                 <TableBody>
                     <TableRow>
-                        <TableCell style={{ width: 160 }} align='Left'>
+                        <TableCell style={{ width: 160 }} align='left'>
                             id
       </TableCell>
-                        <TableCell style={{ width: 160 }} align='Left'>
+                        <TableCell style={{ width: 160 }} align='left'>
                             role
       </TableCell>
-                        <TableCell style={{ width: 160 }} align='Left'>
+                        <TableCell style={{ width: 160 }} align='left'>
                             name
       </TableCell>
-                        <TableCell style={{ width: 160 }} align='Left'>
+                        <TableCell style={{ width: 160 }} align='left'>
                             username
       </TableCell>
-                        <TableCell style={{ width: 160 }} align='Left'>
+                        <TableCell style={{ width: 160 }} align='left'>
                             is Active
       </TableCell>
-                        <TableCell style={{ width: 160 }} align='Left'>
+                        <TableCell style={{ width: 160 }} align='left'>
                             changes
       </TableCell>
                     </TableRow>
@@ -139,19 +139,19 @@ export default function PositionTable({ users }) {
                     ).map((row) => (
                         <TableRow key={row.name}>
                             <TableCell>{row.id}</TableCell>
-                            <TableCell style={{ width: 160 }} align='Left'>
+                            <TableCell style={{ width: 160 }} align='left'>
                                 {row.role}
                             </TableCell>
-                            <TableCell style={{ width: 160 }} align='Left'>
+                            <TableCell style={{ width: 160 }} align='left'>
                                 {row.name}
                             </TableCell>
-                            <TableCell style={{ width: 160 }} align='Left'>
+                            <TableCell style={{ width: 160 }} align='left'>
                                 {row.username}
                             </TableCell>
-                            <TableCell style={{ width: 160 }} align='Left'>
+                            <TableCell style={{ width: 160 }} align='left'>
                                 {row.isActive ? 'yes' : 'no'}
                             </TableCell>
-                            <TableCell style={{ width: 160 }} align='Left'>
+                            <TableCell style={{ width: 160 }} align='left'>
                                 <IconButton>
                                     {' '}
                                     <EditIcon />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
  Avatar,
  Button,
@@ -13,9 +13,15 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import useStyles from '../components/Style';
 import { Formik } from 'formik';
 import { signin } from '../common/authService';
+import { UsersContext } from '../state/userState/UserContext';
+import { useHistory } from 'react-router-dom';
 
 export default function LoginPage() {
  const classes = useStyles();
+ const history = useHistory();
+
+ const { setIsAuthenticated, setUser } = useContext(UsersContext);
+
  return (
   <Container component='main' maxWidth='xs'>
    <CssBaseline />
@@ -42,9 +48,14 @@ export default function LoginPage() {
       const { username, password } = values;
       try {
        const user = await signin(username, password);
+       if (user) {
+        setIsAuthenticated(true);
+        setUser(user);
+        history.push('./complaints');
+       }
        setSubmitting(false);
-       console.log(user);
       } catch (error) {
+       alert('Please check the username and password');
        console.error(error);
        setSubmitting(false);
       }

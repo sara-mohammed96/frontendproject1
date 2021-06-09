@@ -113,19 +113,19 @@ export default function PositionTable({ positions, users }) {
             <Table className={classes.table} aria-label='custom pagination table'>
                 <TableBody>
                     <TableRow>
-                        <TableCell style={{ width: 160 }} align='Left'>
+                        <TableCell style={{ width: 160 }} align='left'>
                             id
       </TableCell>
-                        <TableCell style={{ width: 160 }} align='Left'>
+                        <TableCell style={{ width: 160 }} align='left'>
                             الاسم الوظيفي
       </TableCell>
-                        <TableCell style={{ width: 160 }} align='Left'>
+                        <TableCell style={{ width: 160 }} align='left'>
                             صاحب الوظيفة
       </TableCell>
-                        <TableCell style={{ width: 160 }} align='Left'>
+                        <TableCell style={{ width: 160 }} align='left'>
                             هل يستطيع رؤية الشكوى
       </TableCell>
-                        <TableCell style={{ width: 160 }} align='Left'>
+                        <TableCell style={{ width: 160 }} align='left'>
                             تعديلات
       </TableCell>
                     </TableRow>
