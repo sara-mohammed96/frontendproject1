@@ -16,7 +16,7 @@ export default function Users() {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        getAllUsers().then((usersList) => setUsers(usersList));
+        getAllUsers().then((users) => setUsers(users));
     }, []);
     return (
         <div>

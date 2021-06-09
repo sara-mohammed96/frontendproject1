@@ -50,6 +50,7 @@ export default function UsersTableRow({
             <AddEditUser
                 open={open}
                 handleClose={handleClose}
+                id={id}
                 action={'edit'}
                 name={name}
                 isActive={isActive}

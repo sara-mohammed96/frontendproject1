@@ -42,7 +42,7 @@ function AddPosition({ users }) {
           open={open}
           handleClose={handleClose}
           action={'add'}
-          users={users}
+
         />
       </Grid>
     </Container>

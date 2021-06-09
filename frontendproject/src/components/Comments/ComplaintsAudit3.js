@@ -53,9 +53,7 @@ export default function ComplaintsAudit3({ users }) {
 
                 </FormControl>
 
-                <Button type="onSubmit" variant="contained" component="span" className={classes.buttonComplaintsAudit3} style={{ marginRight: '3rem' }} >
-                    <Typography>ارسال </Typography>
-                </Button>
+
                 <Button type="onSubmit" variant="contained" component="span" className={classes.buttonComplaintsAudit3}>
                     <Typography>انهاء </Typography>
                 </Button>

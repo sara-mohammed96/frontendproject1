@@ -29,7 +29,7 @@ export default function ComplaintsDetails() {
         <Box >
             <Box style={{ display: 'flex', marginTop: '2rem' }}>
                 <Typography gutterBottom variant="h5" component="h2" style={{ marginRight: '2rem' }}>
-                    عنوان الشكوى
+                    بلاغ
           </Typography>
                 <Box style={{ border: "1px solid black", width: "5%", marginRight: '3rem', backgroundColor: '#F5F4FA', borderRadius: '40%', height: '4%' }}>
                     <Typography>1234</Typography>
@@ -37,7 +37,7 @@ export default function ComplaintsDetails() {
             </Box>
 
             <Box style={{ border: "1px solid black", width: "80%", marginRight: '3rem', backgroundColor: '#fff', borderRadius: '10%', height: '60%' }}>
-                <Typography style={{ paddingRight: '6%', paddingTop: '2%' }}>تقديم شكوى ياعهصضشياهعسشاعياشيعخشسايعخا</Typography>
+                <Typography style={{ paddingRight: '6%', paddingTop: '2%' }}>رسالة</Typography>
             </Box>
 
             <Typography gutterBottom variant="h5" component="h2" style={{ marginRight: '2rem' }}>

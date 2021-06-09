@@ -191,5 +191,24 @@ const useStyles = makeStyles((theme) => ({
     selectEmpty: {
         marginTop: theme.spacing(2),
     },
+    ButtonsRoutesStyles: {
+        width: '80%',
+        borderRadius: 50,
+        margin: '0.5rem',
+        backgroundColor: "#FFFFFF",
+        border: "#707070",
+        color: "#6C54A2"
+    },
+    ButtonsRoutesContainer: {
+        width: "40%",
+        backgroundColor: "#6C54A2",
+        paddingTop: "15%",
+        paddingBottom: "20%"
+    },
+    LandingPageStyle: {
+        backgroundColor: "#F5F4FA"
+    },
+
+
 }))
 export default useStyles

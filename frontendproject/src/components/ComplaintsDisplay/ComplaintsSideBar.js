@@ -63,7 +63,7 @@ function ComplaintsSideBar(props) {
                                 <PersonIcon color="primary" />
                             </Box>
                             <Box style={{ border: '1px solid #bdbdbd', width: '90%', borderRadius: '5%' }}>
-                                <Typography>sadsad</Typography>
+                                <Typography>sara</Typography>
                             </Box>
                         </Box>
                         <Box pl={2} pt={2}>
@@ -72,7 +72,7 @@ function ComplaintsSideBar(props) {
                                 <PersonIcon color="primary" />
                             </Box>
                             <Box style={{ border: '1px solid #bdbdbd', width: '90%', borderRadius: '5%' }}>
-                                <Typography>sadsad</Typography>
+                                <Typography>sara@gmail.com</Typography>
                             </Box>
                         </Box>
                         <Box pl={2} pt={2}>
@@ -81,7 +81,7 @@ function ComplaintsSideBar(props) {
                                 <PersonIcon color="primary" />
                             </Box>
                             <Box style={{ border: '1px solid #bdbdbd', width: '90%', borderRadius: '5%' }}>
-                                <Typography>sadsad</Typography>
+                                <Typography>07725452345</Typography>
                             </Box>
                         </Box>
                         <Box pl={2} pt={2}>
@@ -90,7 +90,7 @@ function ComplaintsSideBar(props) {
                                 <PersonIcon color="primary" />
                             </Box>
                             <Box style={{ border: '1px solid #bdbdbd', width: '90%', borderRadius: '5%' }}>
-                                <Typography>sadsad</Typography>
+                                <Typography>student</Typography>
                             </Box>
                         </Box>
 

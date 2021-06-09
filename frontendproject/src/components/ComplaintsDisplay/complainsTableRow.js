@@ -2,7 +2,7 @@ import { IconButton, TableCell, TableRow } from '@material-ui/core';
 import React, { useState } from 'react';
 import EditIcon from '@material-ui/icons/Edit';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-
+import { useHistory } from 'react-router-dom';
 export default function ComplainsTableRow({
     id,
     name,
@@ -18,7 +18,14 @@ export default function ComplainsTableRow({
     const handleClose = () => {
         setOpen(false);
     };
+    let history = useHistory();
+    const redirectToCommentsPage = () => {
+        history.push('/comments')
+    }
 
+    const redirectToDetailsPage = () => {
+        history.push('/details')
+    }
     return (
         <>
             <TableRow>
@@ -35,14 +42,13 @@ export default function ComplainsTableRow({
                 <TableCell style={{ width: 160 }} align='Left'>
                     {name}
                 </TableCell>
-
                 <TableCell style={{ width: 160 }} align='Left'>
-                    <IconButton onClick={handleOpen}>
+                    <IconButton onClick={redirectToCommentsPage}>
                         <EditIcon fontSize="small" color="primary" />
                     </IconButton>
                 </TableCell>
                 <TableCell style={{ width: 160 }} align='Left'>
-                    <IconButton onClick={handleOpen}>
+                    <IconButton onClick={redirectToDetailsPage}>
                         <AccountCircleIcon fontSize="small" color="primary" />
                     </IconButton>
                 </TableCell>

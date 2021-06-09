@@ -142,9 +142,9 @@ export default function UsersTableShow({ users }) {
                             name={row.name}
                             username={row.username}
                             id={row.id}
-                            role={row.role}
                             isActive={row.isActive}
                             password={row.password}
+                            role={row.role}
 
                         />
                     ))}

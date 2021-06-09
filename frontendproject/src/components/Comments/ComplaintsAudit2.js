@@ -22,20 +22,21 @@ export default function ComplaintsAudit2({ PreviousComments }) {
     };
     const onSubmit = (e) => {
         e.preventDefault();
-        debugger;
+
         fetch('http://localhost:3000/comments', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                name: data.body,
-                applicationId: PreviousComments.applicationId,
-                positionId: PreviousComments.positionId,
+                body: data,
+                applicationId: 6,
+                positionId: 3,
+                parentCommentId: 1
             }),
         })
-            .then((res) => res.json())
-            .then((json) => console.log(json.data));
+        console.log(data)
+
     };
 
     return (
@@ -52,7 +53,10 @@ export default function ComplaintsAudit2({ PreviousComments }) {
                     defaultValue="اكتب تعليق" style={{ width: '30rem', marginRight: '15rem' }}
                     onChange={(e) => setData(e.target.value)} />
 
-
+                <Button type="onSubmit" variant="contained" component="span" className={classes.buttonComplaintsAudit3} style={{ marginRight: '3rem' }}
+                    onClick={onSubmit} >
+                    <Typography>ارسال </Typography>
+                </Button>
 
 
                 <Grid style={{ width: '40%', marginRight: '4rem', justify: 'center' }} >

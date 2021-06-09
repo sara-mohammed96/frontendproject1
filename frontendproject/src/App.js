@@ -15,6 +15,7 @@ import useToken from './components/UseToken';
 import Users from './pages/Users';
 import Comments from './pages/Comments'
 import ComplainSeeMore from './components/ComplaintsDisplay/ComplainSeeMore'
+import LandingPage from './pages/LandingPage'
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <div>
           <BrowserRouter>
             <Switch>
+
               <Route path="/login">
                 <LoginPage />
               </Route>
@@ -32,7 +34,7 @@ function App() {
                 <Profiles />
               </Route>
 
-              <Route path="/UserPage">
+              <Route path="/userpage">
                 <UserPage />
               </Route>
               <Route path="/Complaints">
@@ -49,6 +51,9 @@ function App() {
               </Route>
               <Route path="/details">
                 <ComplainSeeMore />
+              </Route>
+              <Route path="/">
+                <LandingPage />
               </Route>
             </Switch>
 

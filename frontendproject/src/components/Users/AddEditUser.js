@@ -15,14 +15,16 @@ export default function AddEditUser({
     open,
     handleClose,
     action,
-    name,
+    name = '',
     isActive = true,
-    password,
-    username,
+    password = '',
+    username = '',
+    role = '',
+    id,
 }) {
     const classes = useStyles();
 
-
+    console.log(isActive, '---isActive');
 
     return (
         <Modal
@@ -47,14 +49,15 @@ export default function AddEditUser({
                             <Typography variant='v5'>اضافة مستخدم </Typography>
                         </Box>
                         <Formik
+
                             className={classes.root}
                             style={{ marginRight: '10%' }}
                             initialValues={{
-                                name: name,
-                                username: username,
-                                password: password,
-                                isActive: isActive,
-
+                                name,
+                                username,
+                                password,
+                                isActive,
+                                role
                             }}
                             validate={(values) => {
                                 const errors = {};
@@ -70,12 +73,17 @@ export default function AddEditUser({
                                 if (!values.isActive) {
                                     errors.isActive = 'Required';
                                 }
-                                // console.log(errors, values);
+                                if (!values.role) {
+                                    errors.role = 'Required';
+                                }
+                                console.log(errors, values);
                                 return errors;
+
                             }}
+
                             onSubmit={async (values, { setSubmitting }) => {
                                 const clonedValues = { ...values };
-
+                                console.log(values)
                                 clonedValues.isActive = Boolean(
                                     parseInt(values.isActive)
                                 );
@@ -84,7 +92,7 @@ export default function AddEditUser({
                                         delete clonedValues[key];
                                     }
                                 });
-                                const res = await postingMethodsMap[action](clonedValues);
+                                const res = await postingMethodsMap[action](clonedValues, id);
                                 console.log(res);
                                 setSubmitting(false);
                                 handleClose();
@@ -155,13 +163,37 @@ export default function AddEditUser({
                                     <FormControl className={classes.formControl}>
                                         <InputLabel htmlFor='age-native-simple'>isActive</InputLabel>
                                         <Select
-                                            name='isActive'
+                                            native
+                                            required
+                                            name={'isActive'}
                                             value={values.isActive}
                                             onChange={handleChange}
                                             onBlur={handleBlur}
+                                            error={
+                                                touched.isActive &&
+                                                Boolean(errors.isActive)
+                                            }
                                         >
-                                            <option value={true}>True</option>
-                                            <option value={false}>False</option>
+                                            <option value={1}>True</option>
+                                            <option value={0}>False</option>
+                                        </Select>
+                                    </FormControl>
+                                    <FormControl className={classes.formControl}>
+                                        <InputLabel htmlFor='age-native-simple'>role</InputLabel>
+                                        <Select
+                                            native
+                                            required
+                                            name={'role'}
+                                            value={values.role}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            error={
+                                                touched.role &&
+                                                Boolean(errors.role)
+                                            }
+                                        >
+                                            <option value={'user'}>user</option>
+                                            <option value={'admin'}>admin</option>
                                         </Select>
                                     </FormControl>
                                     <Button

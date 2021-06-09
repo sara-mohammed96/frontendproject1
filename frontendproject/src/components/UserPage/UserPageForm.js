@@ -7,8 +7,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import EmailIcon from '@material-ui/icons/Email';
 import PhoneEnabledIcon from '@material-ui/icons/PhoneEnabled';
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
-import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
-import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
+
 import TextFieldsIcon from '@material-ui/icons/TextFields';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import Button from '@material-ui/core/Button';
@@ -18,44 +17,30 @@ import AddFilesInstructions from './AddFilesInstructions';
 import useStyles from '../Style';
 import { Formik } from 'formik';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import * as Yup from 'yup';
+
+const SignupSchema = Yup.object().shape({
+    name: Yup.string()
+        .min(3, 'قصير جدا!')
+        .max(50, 'طويل جدا!')
+        .required('يجب كتابته'),
+    email: Yup.string().email('Invalid email').required('Required'),
+    workplaceName: Yup.string().min(3, 'قصير جدا!')
+        .max(50, 'طويل جدا!')
+        .required('يجب كتابته'),
+    phoneNumber: Yup.string()
+        .min(11, 'قصير جدا!')
+        .max(15, 'طويل جدا!')
+        .required('يجب كتابته'),
+    subject: Yup.string()
+        .min(11, 'قصير جدا!')
+        .max(15, 'طويل جدا!')
+        .required('يجب كتابته'),
+});
+
 export default function UserPageForm() {
     const classes = useStyles();
-    //  const [data, setData] = useState({
-    //   name: '',
-    //   email: '',
-    //   workplaceName: '',
-    //   phoneNumber: '',
-    //   subject: '',
-    //   description: '',
-    //  });
 
-    //  const handleForm = (e) => {
-    //   const newData = { ...data };
-    //   newData[e.target.id] = e.target.value;
-    //   setData(newData);
-    //   console.log(newData);
-    //  };
-    //  const onSubmit = (e) => {
-    //   e.preventDefault();
-    //   debugger;
-    //   fetch('http://localhost:3000/applications', {
-    //    method: 'POST',
-    //    headers: {
-    //     'Content-Type': 'application/json',
-    //    },
-    //    body: JSON.stringify({
-    //     name: data.name,
-    //     email: data.email,
-    //     workplaceName: data.workplaceName,
-    //     phoneNumber: data.phoneNumber,
-    //     subject: data.subject,
-    //     description: data.description,
-    //     positionId: 3,
-    //    }),
-    //   })
-    //    .then((res) => res.json())
-    //    .then((json) => console.log(json.data));
-    //  };
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
         setOpen(true);
@@ -89,7 +74,7 @@ export default function UserPageForm() {
                         الالكتروني يرجى الاحتفاظ برقم الطلب فهو الطريقة الوحيدة لتتبع طلبك
      </Typography>
                 </Box>
-                <Box style={{ marginTop: '-30px' }}>
+                <Box style={{ marginTop: '-40px' }}>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'>
                         <path
                             fill='#7661A4'
@@ -102,11 +87,13 @@ export default function UserPageForm() {
             </Box>
         </Box>
     );
+
     return (
         <Grid Container>
             <Formik
                 className={classes.root}
                 style={{ marginRight: '10%' }}
+
                 initialValues={{
                     name: '',
                     workplaceName: '',
@@ -116,28 +103,8 @@ export default function UserPageForm() {
                     description: '',
                     positionId: 3,
                 }}
-                validate={(values) => {
-                    const errors = {};
-                    if (!values.name) {
-                        errors.name = 'Required';
-                    }
-                    if (!values.workplaceName) {
-                        errors.workplaceName = 'Required';
-                    }
-                    if (!values.phoneNumber) {
-                        errors.phoneNumber = 'Required';
-                    }
-                    if (!values.subject) {
-                        errors.subject = 'Required';
-                    }
-                    if (!values.description) {
-                        errors.description = 'Required';
-                    }
-                    if (!values.email) {
-                        errors.email = 'Required';
-                    }
-                    return errors;
-                }}
+
+                validationSchema={SignupSchema}
                 onSubmit={async (values, { setSubmitting }) => {
                     const res = await fetch('http://localhost:3000/applications', {
                         method: 'POST',
@@ -151,6 +118,7 @@ export default function UserPageForm() {
                     setSubmitting(false);
                 }}
             >
+
                 {({
                     values,
                     errors,
@@ -223,6 +191,27 @@ export default function UserPageForm() {
                                 endAdornment: (
                                     <InputAdornment position='end'>
                                         <PhoneEnabledIcon fontSize='small' color='primary' />
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                        <TextField
+                            label='رقم الهوية'
+                            variant='outlined'
+                            className={classes.inputsStyle}
+                            required
+                            fullWidth
+                            name='idNumber'
+                            id='idNumber'
+                            value={values.idNumber}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            error={touched.idNumber && Boolean(errors.idNumber)}
+                            helperText={touched.idNumber && errors.idNumber}
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position='end'>
+                                        <EmailIcon fontSize='small' color='primary' />
                                     </InputAdornment>
                                 ),
                             }}
@@ -347,6 +336,6 @@ export default function UserPageForm() {
             >
                 {body}
             </Modal>
-        </Grid>
+        </Grid >
     );
 }
