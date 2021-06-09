@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import { Container, Box, Grid, Modal, Typography } from '@material-ui/core';
 import useStyles from '../Style';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import TextField from '@material-ui/core/TextField';
 import { httpRequest } from '../../common/apiServer';
 
@@ -28,6 +29,12 @@ function AddUser() {
 
  const handleSubmit = (e) => {
   e.preventDefault();
+  const token = AddUserInfo({
+   name,
+   password,
+   username,
+  });
+ };
 
  const body = (
   <Box className={classes.container}>
