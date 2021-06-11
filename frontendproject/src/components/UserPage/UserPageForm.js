@@ -106,13 +106,7 @@ export default function UserPageForm() {
     validationSchema={SignupSchema}
     onSubmit={async (values, { setSubmitting }) => {
      const isWithHeaders = false;
-     const application = await httpRequest(
-      'applications',
-      values,
-      'POST',
-      isWithHeaders
-     );
-     console.log(application);
+     await httpRequest('applications', values, 'POST', isWithHeaders);
      setSubmitting(false);
     }}
    >
@@ -291,7 +285,6 @@ export default function UserPageForm() {
          />
 
          <Typography align='center'>
-          {' '}
           من هنا حمل ما تريد من مستندات بما يخص البلاغ
          </Typography>
          <Box

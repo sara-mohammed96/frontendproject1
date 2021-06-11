@@ -51,7 +51,7 @@ export default function LoginPage() {
        if (user) {
         setIsAuthenticated(true);
         setUser(user);
-        history.push('./complaints');
+        history.push('./applications');
        }
        setSubmitting(false);
       } catch (error) {

@@ -8,36 +8,39 @@ import theme from './CreateTheme';
 import { UsersContext } from './state/userState/UserContext';
 import { getToken } from './common/helpers';
 import Router from './pages/Router';
+import { getAllUsers } from './components/Users/users.service';
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 function App() {
-  const { isAuthenticated, setIsAuthenticated, setIsLoading } =
-    useContext(UsersContext);
-  console.log(isAuthenticated);
+ const { setIsAuthenticated, setIsLoading, setUsers, users } =
+  useContext(UsersContext);
 
-  useEffect(() => {
-    getToken()
-      .then((res) => {
-        setIsAuthenticated(true);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-        setIsAuthenticated(false);
-        setIsLoading(false);
-      });
-  }, []);
+ console.log(users);
 
-  return (
-    <ThemeProvider theme={theme}>
-      <StylesProvider jss={jss}>
-        <div>
-          <Router />
-        </div>
-      </StylesProvider>
-    </ThemeProvider>
-  );
+ useEffect(() => {
+  getToken()
+   .then((res) => {
+    setIsAuthenticated(true);
+    setIsLoading(false);
+   })
+   .catch((error) => {
+    console.error(error);
+    setIsAuthenticated(false);
+    setIsLoading(false);
+   });
+  getAllUsers().then((users) => setUsers(users));
+ }, []);
+
+ return (
+  <ThemeProvider theme={theme}>
+   <StylesProvider jss={jss}>
+    <div>
+     <Router />
+    </div>
+   </StylesProvider>
+  </ThemeProvider>
+ );
 }
 
 export default App;

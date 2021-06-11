@@ -13,7 +13,11 @@ export const httpRequest = async (
 ) => {
  let token = '';
  if (isWithHeaders) {
-  token = await getToken();
+  try {
+   token = await getToken();
+  } catch (error) {
+   console.error(error);
+  }
  }
  const request = {
   method: type,

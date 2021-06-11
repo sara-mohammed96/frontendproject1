@@ -1,19 +1,25 @@
 import { httpRequest } from '../../common/apiServer';
 
-/*const addComments = async (data) => {
-    const res = await fetch('http://localhost:3000/positions', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    });
-    return res.json();
-};*/
+export const addComment = (applicationId, commentBody, positionId) => {
+ const commentData = {
+  body: commentBody,
+  applicationId,
+  positionId,
+ };
+ return httpRequest('comments', commentData, 'POST');
+};
+
 export const getAllPreviousComments = async () => {
  const res = await httpRequest('comments', {}, 'GET');
  return res.result.list;
 };
+
+export const getCommentsByApplicationId = async (applicationId) => {
+ const query = { applicationId };
+ const res = await httpRequest('comments', {}, 'GET', true, query);
+ return res.result.list;
+};
+
 export const getAllUsers = async () => {
  const res = await httpRequest('users', {}, 'GET');
  return res.result.list;

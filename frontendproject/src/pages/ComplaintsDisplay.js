@@ -13,8 +13,7 @@ function ComplaintsDisplay() {
   <div>
    <Box p={3}>
     <Typography variant='h4' align='center' color='primary'>
-     {' '}
-     الشكاوي{' '}
+     الشكاوي
     </Typography>
    </Box>
 

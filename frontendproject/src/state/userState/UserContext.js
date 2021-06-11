@@ -4,6 +4,7 @@ export const UsersContext = React.createContext();
 
 const UsersProvider = (props) => {
  const [user, setUser] = useState(null);
+ const [users, setUsers] = useState([]);
  const [isAuthenticated, setIsAuthenticated] = useState(false);
  const [isLoading, setIsLoading] = useState(true);
  const [token, setToken] = useState(true);
@@ -13,6 +14,8 @@ const UsersProvider = (props) => {
    value={{
     user,
     setUser,
+    users,
+    setUsers,
     isAuthenticated,
     setIsAuthenticated,
     isLoading,
