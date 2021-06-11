@@ -8,25 +8,11 @@ export const getAllUsers = async () => {
 export const getUsers = async () => httpRequest('users/me', {}, 'GET', true);
 
 const addUser = async (data) => {
- const res = await fetch('http://localhost:3000/users', {
-  method: 'POST',
-  headers: {
-   'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(data),
- });
- return res.json();
+ return httpRequest('users', data, 'POST');
 };
+
 const editUser = async (data, id) => {
- console.log(data);
- const res = await fetch(`http://localhost:3000/users/${id}`, {
-  method: 'PATCH',
-  headers: {
-   'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(data),
- });
- return res.json();
+ return httpRequest(`users/${id}`, data, 'PATCH');
 };
 
 export const postingMethodsMap = {

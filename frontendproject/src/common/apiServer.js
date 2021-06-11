@@ -4,11 +4,6 @@ import { getToken } from './helpers';
 const SERVER_URL = 'http://localhost';
 const PORT = 3000;
 
-const request = async (route) => {
- const res = await fetch(`${SERVER_URL}:${PORT}/${route}`);
- return res.json();
-};
-
 export const httpRequest = async (
  route,
  data,
@@ -40,4 +35,5 @@ export const httpRequest = async (
 
  return res.data;
 };
-export default request;
+
+export default httpRequest;
