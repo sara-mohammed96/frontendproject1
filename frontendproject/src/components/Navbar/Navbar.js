@@ -116,7 +116,9 @@ export default function NavbarHeader() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>حسابات</MenuItem>
-      <MenuItem onClick={handleMenuClose}>حسابي</MenuItem>
+      <MenuItem onClick={handleMenuClose}>مستخدمين</MenuItem>
+      <MenuItem onClick={handleMenuClose}>تسجيل خروج</MenuItem>
+
     </Menu>
   );
 
@@ -174,9 +176,9 @@ export default function NavbarHeader() {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            
+
           </Typography>
-          
+
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">
@@ -184,7 +186,7 @@ export default function NavbarHeader() {
                 <MailIcon />
               </Badge>
             </IconButton>
-           
+
             <IconButton
               edge="end"
               aria-label="account of current user"

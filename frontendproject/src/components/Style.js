@@ -79,6 +79,8 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: theme.shadows[5],
         height: '60%',
         position: 'absolute',
+        marginLeft: '30%',
+        marginTop: '10%',
         width: '40%',
         backgroundColor: '#F5F4FA',
         borderRadius: '2%'

@@ -2,7 +2,8 @@ import { IconButton, TableCell, TableRow } from '@material-ui/core';
 import React, { useState } from 'react';
 import EditIcon from '@material-ui/icons/Edit';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+
 export default function ComplainsTableRow({
     id,
     name,
@@ -20,7 +21,7 @@ export default function ComplainsTableRow({
     };
     let history = useHistory();
     const redirectToCommentsPage = () => {
-        history.push('/comments')
+        history.push(`/comments`)
     }
 
     const redirectToDetailsPage = () => {

@@ -74,7 +74,7 @@ export default function UserPageForm() {
                         الالكتروني يرجى الاحتفاظ برقم الطلب فهو الطريقة الوحيدة لتتبع طلبك
      </Typography>
                 </Box>
-                <Box style={{ marginTop: '-40px' }}>
+                <Box style={{ marginTop: '-28px' }}>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'>
                         <path
                             fill='#7661A4'

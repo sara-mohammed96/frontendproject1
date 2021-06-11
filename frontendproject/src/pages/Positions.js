@@ -6,27 +6,26 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import useStyles from '../components/Style';
 import NavbarHeader from '../components/Navbar/Navbar';
-import AddUser from '../components/Accounts/AddUser';
 import PositionTable from '../components/Positions/PositionTable';
 import AddPosition from '../components/Positions/AddPosition';
 import { getAllUsers } from '../components/Users/users.service';
 import { getAllPositions } from '../components/Positions/positions.service';
 
 export default function Positions() {
- const classes = useStyles();
- const [positions, setPositions] = useState([]);
- const [users, setUsers] = useState([]);
+    const classes = useStyles();
+    const [positions, setPositions] = useState([]);
+    const [users, setUsers] = useState([]);
 
- useEffect(() => {
-  getAllPositions().then((positions) => setPositions(positions));
-  getAllUsers().then((usersList) => setUsers(usersList));
- }, []);
+    useEffect(() => {
+        getAllPositions().then((positions) => setPositions(positions));
+        getAllUsers().then((usersList) => setUsers(usersList));
+    }, []);
 
- return (
-  <div>
-   <NavbarHeader />
-   <PositionTable positions={positions} users={users} />
-   <AddPosition users={users} />
-  </div>
- );
+    return (
+        <div>
+            <NavbarHeader />
+            <PositionTable positions={positions} users={users} />
+            <AddPosition users={users} />
+        </div>
+    );
 }
