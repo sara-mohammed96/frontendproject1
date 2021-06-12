@@ -5,13 +5,13 @@ export const saveTokensToLocalStorage = (accessToken, refreshToken) => {
  window.localStorage.setItem('refresh_token', JSON.stringify(refreshToken));
 };
 
-export const signin = async (username, password) => {
+export const signin = async (usernameText, password) => {
  const signinRoute = 'auth/signin';
  const requestType = 'POST';
  const isWithHeaders = false;
- const userObj = await httpRequest(
+ let userObj = await httpRequest(
   signinRoute,
-  { username, password },
+  { username: usernameText, password },
   requestType,
   isWithHeaders
  );
@@ -19,12 +19,21 @@ export const signin = async (username, password) => {
   userObj.result.accessToken,
   userObj.result.refreshToken
  );
- return {
-  id: userObj.result.id,
-  name: userObj.result.name,
-  username: userObj.result.username,
-  role: userObj.result.role,
- };
+ const { id, name, username, role } = userObj.result;
+ const positionsList = await httpRequest('positions', {}, 'GET', true, {
+  userId: userObj.result.id,
+ });
+ if (positionsList.result.list.length > 0) {
+  const position = positionsList.result.list[0];
+  return {
+   id,
+   name,
+   username,
+   role,
+   position,
+  };
+ }
+ return { id, name, username, role };
 };
 
 export const refreshToken = async (refreshToken) => {

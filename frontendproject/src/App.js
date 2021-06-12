@@ -13,34 +13,32 @@ import { getAllUsers } from './components/Users/users.service';
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 function App() {
-  const { setIsAuthenticated, setIsLoading, setUsers, users } =
-    useContext(UsersContext);
+ const { setIsAuthenticated, setIsLoading, setUsers, getUserData } =
+  useContext(UsersContext);
+ useEffect(() => {
+  getToken()
+   .then((res) => {
+    setIsAuthenticated(true);
+    getUserData();
+    setIsLoading(false);
+   })
+   .catch((error) => {
+    console.error(error);
+    setIsAuthenticated(false);
+    setIsLoading(false);
+   });
+  getAllUsers().then((users) => setUsers(users));
+ }, []);
 
-  console.log(users);
-
-  useEffect(() => {
-    getToken()
-      .then((res) => {
-        setIsAuthenticated(true);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-        setIsAuthenticated(false);
-        setIsLoading(false);
-      });
-    getAllUsers().then((users) => setUsers(users));
-  }, []);
-
-  return (
-    <ThemeProvider theme={theme}>
-      <StylesProvider jss={jss}>
-        <div>
-          <Router />
-        </div>
-      </StylesProvider>
-    </ThemeProvider>
-  );
+ return (
+  <ThemeProvider theme={theme}>
+   <StylesProvider jss={jss}>
+    <div>
+     <Router />
+    </div>
+   </StylesProvider>
+  </ThemeProvider>
+ );
 }
 
 export default App;

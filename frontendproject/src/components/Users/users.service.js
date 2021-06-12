@@ -5,8 +5,6 @@ export const getAllUsers = async () => {
  return res.result.list;
 };
 
-export const getUser = async () => httpRequest('users/me', {}, 'GET', true);
-
 const addUser = async (data) => {
  return httpRequest('users', data, 'POST');
 };

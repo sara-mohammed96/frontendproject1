@@ -5,12 +5,17 @@ export const getAllPositions = async () => {
  return res.result.list;
 };
 
+export const getPositionByUserId = async (userId) => {
+ const res = await httpRequest('positions', {}, 'GET', true, { userId });
+ return res.result.list[0];
+};
+
 const addPosition = async (data) => {
-  return httpRequest('positions', data, 'POST')
+ return httpRequest('positions', data, 'POST');
 };
 
 const editPosition = async (data, positionId) => {
-  return httpRequest(`positions/${positionId}`, data, 'PATCH')
+ return httpRequest(`positions/${positionId}`, data, 'PATCH');
 };
 
 export const postingMethodsMap = {
