@@ -43,7 +43,7 @@ export default function UsersTableRow({
 
                 <TableCell style={{ width: 160 }} align='left'>
                     <IconButton onClick={handleOpen}>
-                        <EditIcon />
+                        <EditIcon color="primary" />
                     </IconButton>
                 </TableCell>
             </TableRow>

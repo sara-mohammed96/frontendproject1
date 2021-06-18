@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
+import WorkIcon from '@material-ui/icons/Work';
 import Typography from '@material-ui/core/Typography';
 import useStyles from '../components/Style';
 import NavbarHeader from '../components/Navbar/Navbar';
@@ -22,8 +23,9 @@ export default function Positions() {
     }, []);
 
     return (
-        <div>
+        <div style={{backgroundColor:''}}>
             <NavbarHeader />
+            <Typography variant='h5' align="center" style={{ margin: '2rem' }}> <WorkIcon color="primary" />المواقع الوظيفية </Typography>
             <PositionTable positions={positions} users={users} />
             <AddPosition users={users} />
         </div>

@@ -111,25 +111,25 @@ export default function ComplainsTable({ applications }) {
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label='custom pagination table'>
                 <TableBody>
-                    <TableRow>
+                    <TableRow style={{ background: 'linear-gradient(to right bottom, #4455A7, #6C54A2)' }}>
                         <TableCell style={{ width: 160 }} align='left'>
                             id
-      </TableCell>
+                        </TableCell>
                         <TableCell style={{ width: 160 }} align='left'>
                             عنوان الشكوى
-      </TableCell>
+                        </TableCell>
                         <TableCell style={{ width: 160 }} align='left'>
                             تفاصيل الشكوى
-      </TableCell>
+                        </TableCell>
                         <TableCell style={{ width: 160 }} align='left'>
                             اسم صاحب الشكوى
-      </TableCell>
+                        </TableCell>
                         <TableCell style={{ width: 160 }} align='left'>
                             تدقيق
-      </TableCell>
+                        </TableCell>
                         <TableCell style={{ width: 160 }} align='left'>
                             معلومات صاحب الشكوى
-      </TableCell>
+                        </TableCell>
                     </TableRow>
                     {(rowsPerPage > 0
                         ? applications.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)

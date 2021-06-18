@@ -8,7 +8,7 @@ import { getCommentsByApplicationId } from './Comments.service';
 import { getAllUsers } from './Comments.service';
 import { getApplications, getApplicationById } from './Comments.service';
 import { useParams } from 'react-router';
-
+import CommentsSection from './CommentsSection'
 export default function ComplaintsAudit() {
   const [comments, setComments] = useState([]);
   const [application, setApplication] = useState([]);
@@ -40,13 +40,13 @@ export default function ComplaintsAudit() {
       <Box style={{ display: 'flex' }}>
         <Box>{isLoading ? '' : <ComplaintsAudit1 application={application} />}</Box>
         <Box>
-          <Typography variant='h5' component='h2' gutterBottom>
-            التهميشات السابقة
-     </Typography>
-          <ShowPreviousComments comments={comments} application={application} />
+
+          <CommentsSection comments={comments} application={application} />
           <AddingCommentSection applicationId={parseInt(applicationId)} />
+
         </Box>
       </Box>
+
     </Box>
   );
 }

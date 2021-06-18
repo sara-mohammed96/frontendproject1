@@ -26,14 +26,14 @@ export default function PositionTableRow({
                     {name}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align='left'>
-                    {name}
+                    {users.name}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align='left'>
                     {canReceiveApplication ? 'yes' : 'no'}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align='left'>
                     <IconButton onClick={handleOpen}>
-                        <EditIcon />
+                        <EditIcon color="primary" />
                     </IconButton>
                 </TableCell>
             </TableRow>

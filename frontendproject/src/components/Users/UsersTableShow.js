@@ -109,29 +109,29 @@ export default function UsersTableShow({ users }) {
     };
 
     return (
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} style={{ width: '60rem', marginRight: '6%' }}>
             <Table className={classes.table} aria-label='custom pagination table'>
                 <TableBody>
 
-                    <TableRow>
-                        <TableCell style={{ width: 160 }} align='left'>
+                    <TableRow style={{ background: 'linear-gradient(to right bottom, #4455A7, #6C54A2)' }}>
+                        <TableCell style={{ width: 160, color: 'white' }} align='left'>
                             id
-      </TableCell>
-                        <TableCell style={{ width: 160 }} align='left'>
+                        </TableCell>
+                        <TableCell style={{ width: 160, color: 'white' }} align='left'>
                             role
-      </TableCell>
-                        <TableCell style={{ width: 160 }} align='left'>
+                        </TableCell>
+                        <TableCell style={{ width: 160, color: 'white' }} align='left'>
                             name
-      </TableCell>
-                        <TableCell style={{ width: 160 }} align='left'>
+                        </TableCell>
+                        <TableCell style={{ width: 160, color: 'white' }} align='left'>
                             username
-      </TableCell>
-                        <TableCell style={{ width: 160 }} align='left'>
+                        </TableCell>
+                        <TableCell style={{ width: 160, color: 'white' }} align='left'>
                             is Active
-      </TableCell>
-                        <TableCell style={{ width: 160 }} align='left'>
+                        </TableCell>
+                        <TableCell style={{ width: 160, color: 'white' }} align='left'>
                             changes
-      </TableCell>
+                        </TableCell>
                     </TableRow>
                     {(rowsPerPage > 0
                         ? users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)

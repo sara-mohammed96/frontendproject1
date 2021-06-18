@@ -14,7 +14,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-
+import { useHistory } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -103,6 +103,16 @@ export default function NavbarHeader() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+  let history = useHistory();
+  const redirectToPositions = () => {
+    history.push('/positions')
+  }
+  const redirectToUsers = () => {
+    history.push('/users')
+  }
+  const redirectToLoginPage = () => {
+    history.push('/')
+  }
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -115,9 +125,9 @@ export default function NavbarHeader() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>حسابات</MenuItem>
-      <MenuItem onClick={handleMenuClose}>مستخدمين</MenuItem>
-      <MenuItem onClick={handleMenuClose}>تسجيل خروج</MenuItem>
+      <MenuItem onClick={redirectToUsers}>موظفين</MenuItem>
+      <MenuItem onClick={redirectToPositions}>وظائف</MenuItem>
+      <MenuItem onClick={redirectToLoginPage}>تسجيل خروج</MenuItem>
 
     </Menu>
   );
@@ -181,11 +191,7 @@ export default function NavbarHeader() {
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
+
 
             <IconButton
               edge="end"

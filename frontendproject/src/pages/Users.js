@@ -10,6 +10,7 @@ import UsersTable from '../components/Users/UsersTable';
 import AddUser from '../components/Users/AddUser';
 import { getAllUsers } from '../components/Users/users.service';
 import UsersTableShow from '../components/Users/UsersTableShow';
+import GroupIcon from '@material-ui/icons/Group';
 
 export default function Users() {
     const classes = useStyles();
@@ -21,6 +22,7 @@ export default function Users() {
     return (
         <div>
             <NavbarHeader />
+            <Typography variant='h5' align="center" style={{ margin: '2rem' }}> <GroupIcon color="primary" />الموظفين </Typography>
             <UsersTableShow users={users} />
             <AddUser />
         </div>

@@ -6,6 +6,8 @@ import GetAppIcon from '@material-ui/icons/GetApp';
 import useStyles from '../Style';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import FollowUpComplain from '../../pages/FollowUpComplain'
+
 export default function ButtonsRoutes() {
     const classes = useStyles();
     let history = useHistory();
@@ -15,6 +17,9 @@ export default function ButtonsRoutes() {
 
     const redirectToLoginPage = () => {
         history.push('/login')
+    }
+    const redirectToFollowUpComplainPage = () => {
+        history.push('/follow')
     }
     return (
         <Grid className={classes.ButtonsRoutesContainer}>
@@ -30,8 +35,8 @@ export default function ButtonsRoutes() {
 
 
 
-                تقديم شكوى
-                    </Button>
+                <Typography variant='h6'>تقديم شكوى</Typography>
+            </Button>
 
             <Button
                 type='submit'
@@ -40,17 +45,17 @@ export default function ButtonsRoutes() {
                 className={classes.ButtonsRoutesStyles}
                 onClick={redirectToLoginPage}
             >
-                تسجيل الدخول
-                    </Button>
+                <Typography variant='h6'> تسجيل الدخول</Typography>
+            </Button>
             <Button
                 type='submit'
                 fullWidth
                 variant='contained'
                 className={classes.ButtonsRoutesStyles}
-
+                onClick={redirectToFollowUpComplainPage}
             >
-                تتبع الشكوى
-                    </Button>
+                <Typography variant='h6'>تتبع الشكوى</Typography>
+            </Button>
         </Grid>
     )
 }

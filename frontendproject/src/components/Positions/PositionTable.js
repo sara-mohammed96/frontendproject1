@@ -109,25 +109,25 @@ export default function PositionTable({ positions, users }) {
     };
 
     return (
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} style={{ width: '60rem', marginRight: '6%' }}>
             <Table className={classes.table} aria-label='custom pagination table'>
                 <TableBody>
-                    <TableRow>
-                        <TableCell style={{ width: 160 }} align='left'>
+                    <TableRow style={{ background: 'linear-gradient(to right bottom, #4455A7, #6C54A2)' }}>
+                        <TableCell style={{ width: 160, color: 'white' }} align='left'>
                             id
-      </TableCell>
-                        <TableCell style={{ width: 160 }} align='left'>
+                        </TableCell>
+                        <TableCell style={{ width: 160, color: 'white' }} align='left'>
                             الاسم الوظيفي
-      </TableCell>
-                        <TableCell style={{ width: 160 }} align='left'>
+                        </TableCell>
+                        <TableCell style={{ width: 160, color: 'white' }} align='left'>
                             صاحب الوظيفة
-      </TableCell>
-                        <TableCell style={{ width: 160 }} align='left'>
+                        </TableCell>
+                        <TableCell style={{ width: 160, color: 'white' }} align='left'>
                             هل يستطيع رؤية الشكوى
-      </TableCell>
-                        <TableCell style={{ width: 160 }} align='left'>
+                        </TableCell>
+                        <TableCell style={{ width: 160, color: 'white' }} align='left'>
                             تعديلات
-      </TableCell>
+                        </TableCell>
                     </TableRow>
                     {(rowsPerPage > 0
                         ? positions.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)

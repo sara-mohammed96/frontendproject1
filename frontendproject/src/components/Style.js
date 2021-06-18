@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     buttonAdd: {
         borderRadius: 50,
         marginTop: '3rem',
-        marginLeft: '9%',
+        marginLeft: '15%',
         marginBottom: '2rem',
         width: '70%',
         height: '2.313rem',
@@ -79,9 +79,9 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: theme.shadows[5],
         height: '60%',
         position: 'absolute',
-        marginLeft: '30%',
+
         marginTop: '10%',
-        width: '40%',
+
         backgroundColor: '#F5F4FA',
         borderRadius: '2%'
 
@@ -91,6 +91,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'center',
         marginTop: '8%',
+
 
     },
     root1: {
@@ -195,20 +196,23 @@ const useStyles = makeStyles((theme) => ({
     },
     ButtonsRoutesStyles: {
         width: '80%',
+        height: '3rem',
         borderRadius: 50,
-        margin: '0.5rem',
+        margin: '1rem',
         backgroundColor: "#FFFFFF",
         border: "#707070",
         color: "#6C54A2"
     },
     ButtonsRoutesContainer: {
-        width: "40%",
-        backgroundColor: "#6C54A2",
-        paddingTop: "15%",
-        paddingBottom: "20%"
+        width: "50%",
+        background: 'linear-gradient(to right top, #4455A7, #6C54A2)',
+        paddingTop: "10%",
+        paddingBottom: "13%",
+        paddingLeft: '10%'
     },
     LandingPageStyle: {
-        backgroundColor: "#F5F4FA"
+        //backgroundColor: "#F5F4FA"
+        display: 'flex'
     },
 
 

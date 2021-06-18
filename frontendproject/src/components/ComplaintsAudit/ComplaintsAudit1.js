@@ -30,7 +30,7 @@ export default function ComplaintsAudit1({ application }) {
     <Box>
       <Typography variant='h5' component='h2' gutterBottom className={classes.complainTitleStyle} >
         نص المشكلة
-     </Typography>
+      </Typography>
       <Card className={classes.root}>
         <CardContent>
           <Typography variant='h6' component='h2' gutterBottom>

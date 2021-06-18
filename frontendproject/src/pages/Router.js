@@ -6,10 +6,10 @@ import LoginPage from '../pages/LoginPage';
 import Positions from '../pages/Positions';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Users from '../pages/Users';
-import ComplainSeeMore from '../components/ComplaintsDisplay/ComplainSeeMore';
 import LandingPage from '../pages/LandingPage';
 import PrivateRoute from '../components/PrivateRoute/PrivateRoute';
 import ComplaintsAudit from '../components/ComplaintsAudit/ComplaintsAudit';
+import FollowUpComplain from './FollowUpComplain';
 export default function Router() {
     return (
         <BrowserRouter>
@@ -22,25 +22,27 @@ export default function Router() {
                     <UserPage />
                 </Route>
 
+                <Route path='/follow'>
+                    <FollowUpComplain />
+                </Route>
+
                 <PrivateRoute path='/applications'>
                     <ComplaintsDisplay />
                 </PrivateRoute>
 
-                <Route path='/positions'>
+                <PrivateRoute path='/positions'>
                     <Positions />
-                </Route>
+                </PrivateRoute>
 
-                <Route path='/users'>
+                <PrivateRoute path='/users'>
                     <Users />
-                </Route>
+                </PrivateRoute>
 
-                <Route path='/application/:applicationId'>
+                <PrivateRoute path='/application/:applicationId'>
                     <ComplaintsAudit />
-                </Route>
+                </PrivateRoute>
 
-                <Route path='/details'>
-                    <ComplainSeeMore />
-                </Route>
+
 
                 <Route path='/'>
                     <LandingPage />
