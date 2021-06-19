@@ -30,11 +30,11 @@ export default function Router() {
                     <ComplaintsDisplay />
                 </PrivateRoute>
 
-                <PrivateRoute path='/positions'>
+                <PrivateRoute path='/positions' isAdminRequired={true}>
                     <Positions />
                 </PrivateRoute>
 
-                <PrivateRoute path='/users'>
+                <PrivateRoute path='/users' isAdminRequired={true} >
                     <Users />
                 </PrivateRoute>
 

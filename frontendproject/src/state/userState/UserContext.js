@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import httpRequest from '../../common/apiServer';
 
 export const UsersContext = React.createContext();
@@ -6,10 +6,17 @@ export const UsersContext = React.createContext();
 const UsersProvider = (props) => {
     const [user, setUser] = useState(null);
     const [users, setUsers] = useState([]);
+    const [isAdmin, setIsAdmin] = useState(false);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [token, setToken] = useState(true);
 
+    useEffect(() => {
+        if(user){
+            setIsAdmin(user.role === 'admin')
+        }
+    }, [user])
+    
     const getUserData = async () => {
         let userObj = await httpRequest('users/me', {}, 'GET');
         const { id, name, username, role } = userObj.result;
@@ -49,6 +56,7 @@ const UsersProvider = (props) => {
                 token,
                 setToken,
                 getUserData,
+                isAdmin,
             }}
         >
             {props.children}

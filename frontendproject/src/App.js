@@ -19,8 +19,8 @@ function App() {
   getToken()
    .then((res) => {
     setIsAuthenticated(true);
-    getUserData();
-    setIsLoading(false);
+    getUserData().then(() => setIsLoading(false) );
+    ;
    })
    .catch((error) => {
     console.error(error);
