@@ -36,14 +36,9 @@ export default function AddingCommentSection({ applicationId, userId }) {
         }}
         onSubmit={async (values, { setSubmitting }) => {
           const { commentBody, receiverUserId } = values;
-          try {
-            await addComment(applicationId, commentBody, receiverUserId, user);
-            setSubmitting(false);
-          } catch (error) {
-            alert("لقد ارسلت تهميش مسبقا لا يمكن كتابة تهميش اخر ");
-            console.error(error);
-            setSubmitting(false);
-          }
+
+          await addComment(applicationId, commentBody, receiverUserId, user);
+          setSubmitting(false);
         }}>
         {({
           values,
