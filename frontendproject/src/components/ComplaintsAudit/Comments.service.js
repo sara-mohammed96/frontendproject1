@@ -1,14 +1,12 @@
 import { httpRequest } from '../../common/apiServer';
-import { getPositionByUserId } from '../Positions/positions.service';
 
-export const addComment = async (applicationId, commentBody, receiverUserId, user, isHidden) => {
-  const receiverPosition = await getPositionByUserId(receiverUserId)
+export const addComment = async (applicationId, commentBody, receiverPositionId, user, isHidden) => {
   const commentData = {
     body: commentBody,
     positionId: user.position.id,
     applicationId,
     isHidden,
-    followUpPositions: [receiverPosition.id]
+    followUpPositions: [receiverPositionId]
   };
   return httpRequest('comments', commentData, 'POST');
 };

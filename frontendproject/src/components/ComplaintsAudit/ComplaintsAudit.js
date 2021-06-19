@@ -14,7 +14,6 @@ export default function ComplaintsAudit() {
   const [comments, setComments] = useState([]);
   const [application, setApplication] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [users, setUsers] = useState([]);
 
   const { applicationId } = useParams();
 

@@ -23,9 +23,6 @@ export default function AddEditPosition({
     managerId = null,
 }) {
     const classes = useStyles();
-
-    console.log(canReceiveApplication, '---canReceiveApplication');
-
     return (
         <Modal
             disableAutoFocus

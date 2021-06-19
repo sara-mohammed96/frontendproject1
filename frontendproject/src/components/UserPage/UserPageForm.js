@@ -150,7 +150,6 @@ export default function UserPageForm() {
                     const isWithHeaders = false;
                     await httpRequest("applications", values, "POST", isWithHeaders);
                     setSubmitting(false);
-                    console.log(values);
                 }}>
                 {({
                     values,

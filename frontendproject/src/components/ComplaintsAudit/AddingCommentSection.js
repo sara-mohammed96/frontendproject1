@@ -9,24 +9,24 @@ import { Typography, Box } from "@material-ui/core";
 import { UsersContext } from "../../state/userState/UserContext";
 import { Formik } from "formik";
 import { addComment } from "./Comments.service";
-import Print from "./Print";
+
 export default function AddingCommentSection({ applicationId, userId }) {
   const classes = useStyles();
-  const { users, user } = useContext(UsersContext);
-
+  const { user, positions } = useContext(UsersContext);
   return (
+
     <Box>
       <Formik
         className={classes.root}
         style={{ marginRight: "10%" }}
         initialValues={{
           commentBody: "",
-          receiverUserId: null,
+          receiverPositionId: null,
         }}
         validate={(values) => {
           const errors = {};
-          if (!values.receiverUserId) {
-            errors.receiverUserId = "Required";
+          if (!values.receiverPositionId) {
+            errors.receiverPositionId = "Required";
           }
           if (!values.commentBody) {
             errors.commentBody = "Required";
@@ -36,7 +36,6 @@ export default function AddingCommentSection({ applicationId, userId }) {
         }}
         onSubmit={async (values, { setSubmitting }) => {
           const { commentBody, receiverUserId } = values;
-
           await addComment(applicationId, commentBody, receiverUserId, user);
           setSubmitting(false);
         }}>
@@ -99,16 +98,16 @@ export default function AddingCommentSection({ applicationId, userId }) {
                   اختر المرسل اليه
                 </InputLabel>
                 <Select
-                  name="receiverUserId"
-                  value={values.receiverUserId}
+                  name="receiverPositionId"
+                  value={values.receiverPositionId}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   error={
-                    touched.receiverUserId && Boolean(errors.receiverUserId)
+                    touched.receiverPositionId && Boolean(errors.receiverPositionId)
                   }>
-                  {users.map((user, i) => (
-                    <option key={i} value={user.id}>
-                      {user.name}
+                  {positions.map((position, i) => (
+                    <option key={i} value={position.id}>
+                      {position.name}
                     </option>
                   ))}
                 </Select>
