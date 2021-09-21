@@ -1,11 +1,11 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import useStyles from "../Style";
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
-import { Typography, Box } from "@material-ui/core";
+import { Typography, Box, Modal } from "@material-ui/core";
 import { UsersContext } from "../../state/userState/UserContext";
 import { Formik } from "formik";
 import { addComment } from "./Comments.service";
@@ -13,8 +13,52 @@ import { addComment } from "./Comments.service";
 export default function AddingCommentSection({ applicationId, userId }) {
   const classes = useStyles();
   const { user, positions } = useContext(UsersContext);
-  return (
 
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const body = (
+    <Box className={classes.container}>
+      <Box className={classes.modalPaperMessage} p="6">
+        <Box
+          style={{
+            width: "100%",
+
+            padding: "1rem",
+          }}>
+          <Typography
+            variant="h5"
+            align="center"
+            style={{ width: "80%", marginTop: "2rem", marginBottom: "4rem" }}>
+            هل انت متاكد من انهاء الشكوى؟
+          </Typography>
+          <Button
+            component="span"
+            style={{
+              display: "flex",
+              borderRadius: 50,
+              background: "linear-gradient(to right bottom, #4455A7, #6C54A2)",
+              color: "white",
+              width: "10rem",
+              height: "3.5rem",
+              marginRight: "2rem",
+              marginTop: "1rem",
+            }}>
+            {" "}
+            انهاء
+          </Button>
+        </Box>
+      </Box>
+    </Box>
+  );
+
+  return (
     <Box>
       <Formik
         className={classes.root}
@@ -25,9 +69,7 @@ export default function AddingCommentSection({ applicationId, userId }) {
         }}
         validate={(values) => {
           const errors = {};
-          if (!values.receiverPositionId) {
-            errors.receiverPositionId = "Required";
-          }
+
           if (!values.commentBody) {
             errors.commentBody = "Required";
           }
@@ -35,8 +77,17 @@ export default function AddingCommentSection({ applicationId, userId }) {
           return errors;
         }}
         onSubmit={async (values, { setSubmitting }) => {
-          const { commentBody, receiverUserId } = values;
-          await addComment(applicationId, commentBody, receiverUserId, user);
+          const ClonedValues = { ...values };
+          if (open) {
+            delete ClonedValues.receiverPositionId;
+          }
+          const { commentBody, receiverPositionId } = ClonedValues;
+          await addComment(
+            applicationId,
+            commentBody,
+            receiverPositionId,
+            user
+          );
           setSubmitting(false);
         }}>
         {({
@@ -103,7 +154,8 @@ export default function AddingCommentSection({ applicationId, userId }) {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   error={
-                    touched.receiverPositionId && Boolean(errors.receiverPositionId)
+                    touched.receiverPositionId &&
+                    Boolean(errors.receiverPositionId)
                   }>
                   {positions.map((position, i) => (
                     <option key={i} value={position.id}>
@@ -112,12 +164,11 @@ export default function AddingCommentSection({ applicationId, userId }) {
                   ))}
                 </Select>
               </FormControl>
-              <Box>
+              <Box style={{ width: "40%" }}>
                 <Button
                   type="submit"
                   fullWidth
                   variant="contained"
-                  color="primary"
                   disabled={isSubmitting}
                   style={{
                     borderRadius: 50,
@@ -135,15 +186,34 @@ export default function AddingCommentSection({ applicationId, userId }) {
                   component="span"
                   style={{
                     borderRadius: 50,
-                    marginTop: "1rem",
                     background:
                       "linear-gradient(to right bottom, #4455A7, #6C54A2)",
                     color: "white",
                     width: "18rem",
-                    height: "2.5rem",
+                    height: "3rem",
+                    marginTop: "1rem",
+                    marginRight: "0.2rem",
                   }}
                   onClick={() => window.print()}>
                   <Typography> طباعة الشكوى </Typography>
+                </Button>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  type="submit"
+                  disabled={isSubmitting}
+                  style={{
+                    borderRadius: 50,
+                    background:
+                      "linear-gradient(to right bottom, #4455A7, #6C54A2)",
+                    color: "white",
+                    width: "18rem",
+                    height: "3rem",
+                    marginTop: "1rem",
+                    marginRight: "0.2rem",
+                  }}
+                  onClick={handleOpen}>
+                  <Typography>انهاء</Typography>
                 </Button>
               </Box>
             </Box>
@@ -151,7 +221,15 @@ export default function AddingCommentSection({ applicationId, userId }) {
         )}
       </Formik>
 
-      <Box></Box>
+      <Modal
+        disableAutoFocus
+        disableEnforceFocus
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description">
+        {body}
+      </Modal>
     </Box>
   );
 }

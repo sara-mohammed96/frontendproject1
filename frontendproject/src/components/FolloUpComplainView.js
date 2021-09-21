@@ -26,7 +26,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ComplaintsAudit1({ application }) {
+export default function FollowUpComplainView() {
   const classes = useStyles();
   return (
     <Box>
@@ -35,12 +35,15 @@ export default function ComplaintsAudit1({ application }) {
         component="h2"
         gutterBottom
         className={classes.complainTitleStyle}>
-        {application.subject}
+        بلاغ عن تاخير راتب
       </Typography>
       <Card className={classes.root}>
         <CardContent>
           <Typography variant="body2" component="p" style={{ padding: "2px" }}>
-            {application.description}
+            أرفع خطابي هذا وفيه شكوى لسعادتكم علّي أجد من ينصف ابني مما حصل له،
+            فلا يخفى على الجميع حرصكم الشديد. وما تقومون به من جهود جبارة في
+            سبيل إرساء مبادئ العدل وهذا ما اضطرني إلى كتابة معروض مؤثر لشخصكم
+            الكريم وفقكم الله وبارك فيكم.
             <br />
           </Typography>
         </CardContent>
@@ -73,7 +76,7 @@ export default function ComplaintsAudit1({ application }) {
           size="medium"
           id="outlined-read-only-input"
           label="الاسم الكامل"
-          defaultValue={application.name}
+          defaultValue={"eman"}
           InputProps={{
             readOnly: true,
           }}
@@ -84,7 +87,7 @@ export default function ComplaintsAudit1({ application }) {
             size="medium"
             id="outlined-read-only-input"
             label="رقم الهاتف"
-            defaultValue={application.phoneNumber}
+            defaultValue={"12343453342"}
             InputProps={{
               readOnly: true,
             }}
@@ -96,7 +99,7 @@ export default function ComplaintsAudit1({ application }) {
             size="medium"
             id="outlined-read-only-input"
             label="البريد الالكتروني "
-            defaultValue={application.email}
+            defaultValue={"eman@gmail.com"}
             InputProps={{
               readOnly: true,
             }}
@@ -108,7 +111,7 @@ export default function ComplaintsAudit1({ application }) {
             size="medium"
             id="outlined-read-only-input"
             label="مكان العمل"
-            defaultValue={application.workplaceName}
+            defaultValue={"رئاسة الجامعة"}
             InputProps={{
               readOnly: true,
             }}

@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.58",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -19,6 +20,7 @@
     "react-dropzone": "^11.3.2",
     "react-scripts": "4.0.3",
     "react-to-print": "^2.12.6",
+    "read-more-react": "^1.0.10",
     "web-vitals": "^1.0.1",
     "yup": "^0.32.9"
   },
